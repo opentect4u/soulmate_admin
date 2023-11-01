@@ -8,6 +8,7 @@ const {
   user_Doc,
   user_Doc_File,
   getActive,
+  getProfileVerify,
 } = require("../module/UserModule");
 const {
   field_height,
@@ -103,6 +104,7 @@ userRouter.get("/view_user", async (req, res) => {
     mother_occ: field_Mother_Occupation,
     no_of_bro: field_No_Brother,
     no_of_sis: field_No_Sister,
+    id,
   };
   res.render("user/view", data);
   // console.log(data);
@@ -115,6 +117,12 @@ userRouter.post('/update_active_flag', async (req, res) => {
   var res_dt = await getActive(data);
   res.send(res_dt)
   console.log(res_dt);
+})
+
+userRouter.post('/update_profile_verify', async (req, res) => {
+  var data = req.body;
+  var res_dt = await getProfileVerify(data);
+  res.send(res_dt)
 })
 
 module.exports = { userRouter };

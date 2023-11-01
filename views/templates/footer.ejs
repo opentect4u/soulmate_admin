@@ -68,6 +68,9 @@
 <script src="/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
+<!-- Bootstrap Switch -->
+<script src="/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+
 <!-- Summernote -->
 <script src="/plugins/summernote/summernote-bs4.min.js"></script>
 <!-- overlayScrollbars -->
@@ -79,6 +82,11 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/js/pages/dashboard.js"></script>
 
+<script>
+$("input[data-bootstrap-switch]").each(function(){
+  $(this).bootstrapSwitch('state', $(this).prop('checked'));
+});
+</script>
 <script>
   $(function () {
     // $("#example1").DataTable({
@@ -118,6 +126,60 @@
       }
     })
   })
+</script>
+<script>
+    $(document).ready(function(){
+        $('#toggleButton').click(function(){
+            // $('#status').toggle();
+            var status = 'N'
+            if ($('#toggleButton').is(':checked')) {
+                $('#status').text('Verified');
+                status = 'Y'
+            } else {
+                $('#status').text('Not Verified');
+                status = 'N'
+            }
+            
+            $.ajax({
+                  url:'/user/update_profile_verify',
+                  method: 'POST',
+                  data: {flag:status, id: $('#userTableId').val()},
+                  success: function(result){
+                    console.log(result);
+                  },
+                  error: function(err){
+                    console.log(err);
+                  }
+                })
+        });
+    });
+</script>
+<script>
+  $(document).ready(function(){
+      $('#ac_active_flag').click(function(){
+          // $('#status').toggle();
+          var ac_status = 'N'
+          if ($('#ac_active_flag').is(':checked')) {
+              $('#ac_status').text('Active');
+              ac_status = 'Y'
+          } else {
+              $('#ac_status').text('Deactive');
+              ac_status = 'N'
+          }
+          
+          $.ajax({
+              url:'/user/update_active_flag',
+              method: 'POST',
+                data: {flag:ac_status, id: $('#userTableId').val()},
+                success: function(result){
+                  console.log(result);
+                },
+                error: function(err){
+                  console.log(err);
+                }
+              })
+      });
+  });
 </script>
 </body>
 </html>

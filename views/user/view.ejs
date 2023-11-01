@@ -29,9 +29,13 @@
                 </div> -->
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <div class="portfolio_details_block">
-                  <div class="row">
-                    <h4 style="background-color: #d81b60; width: 160px; color: white; border: 15px;  padding:5px;">User Basic Info</h4>
+                    <!-- <div class="portfolio_details_block"> -->
+                  <div class="row" style="background-color: aliceblue;
+                  width: 76vw;
+                  border: 2px solid #dc3545;
+                  padding: 17px;
+                  border-radius: 18px;">
+                    <h5 style="background-color: #d81b60; width: 180px; color: white; border: 15px;  padding:5px; border-radius: 8px;"><i class='fas fa-address-card'>&nbsp;User Basic Info</i></h5>
                     <div class="row">
                     <div class="col-md-6">
                         <p>
@@ -203,8 +207,13 @@
                     </div>
                 </div>
             </div>
-                    <h4 style="background-color: #d81b60; width: 180px; color: white; border: 15px;  padding:5px;">Professional Info</h4>
-                    <div class="row">
+            <div class="row mt-3" style="background-color: aliceblue;
+            width: 76vw;
+            border: 2px solid #dc3545;
+            padding: 17px;
+            border-radius: 18px;">
+                    <h5 style="background-color: #d81b60; width: 190px; color: white; border: 15px;  padding:5px;border-radius: 8px"><i class='fas fa-user-lock'>&nbsp;Professional Info</i></h5>
+                    <div class="row mt-3">
                     <div class="col-md-6">
                         <p>
                             <span class="font-weight-bold">Highest Education:</span>
@@ -236,7 +245,13 @@
                         </p>
                     </div>
                     </div>
-                    <h4 style="background-color: #d81b60; width: 200px; color: white; border: 15px;  padding:5px;">Hobbies & Interest</h4>
+                </div>
+                <div class="row mt-3" style="background-color: aliceblue;
+                width: 76vw;
+                border: 2px solid #dc3545;
+                padding: 17px;
+                border-radius: 18px;">
+                    <h5 style="background-color: #d81b60; width: 200px; color: white; border: 15px;  padding:5px; border-radius: 8px"><i class="fas fa-heart">&nbsp;Hobbies & Interest</i></h5>
                     <div class="row">
                     <div class="col-md-6">
                         <p>
@@ -269,74 +284,106 @@
                         </p>
                     </div>
                 </div>
-                <h4 style="background-color: #d81b60; width: 175px; color: white; border: 15px;  padding:6px;">Documents Info</h4>
-                <div class="row">
-                    <div class="col-md-6">
+                </div>
+                <div class="row mt-3" style="background-color: aliceblue;
+                width: 76vw;
+                border: 2px solid #dc3545;
+                padding: 17px;
+                border-radius: 18px;">
+                    <div class="col-12">
+                        <h5 style="background-color: #d81b60; width: 180px; color: white; border: 15px;  padding:6px; border-radius: 8px"><i class="fas fa-layer-group">&nbsp;Documents Info</i></h5>
+                    </div>
+                    <div class="col-4">
                         <p>
                             <span class="font-weight-bold">Document Type:</span>
                             <span class="pl-2"><%= doc_type.length > 0 ?  doc_type[0].doc_type : '' %></span>
                         </p>
                     </div>
-                    <% if(doc_file.length > 0){
-                        doc_file.forEach(fdt => {
-                            var fileType = fdt.file_path.split('.');
-                            fileType = fileType[fileType.length-1]
-                            %>
+                    <div class="col-4">
+                        <span class="font-weight-bold">Document Verification:</span>
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="toggleButton" <%= basic_info[0].profile_verify_flag != 'N' ? 'checked' : '' %>>
+                            <label class="custom-control-label" for="toggleButton">
+                                <span id="status"><%= basic_info[0].profile_verify_flag != 'N' ? 'Verified' : 'Not Verified' %></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <span class="font-weight-bold">Profile Active:</span>
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="ac_active_flag" <%= basic_info[0].active_flag != 'N' ? 'checked' : '' %>>
+                            <label class="custom-control-label" for="ac_active_flag">
+                                <span id="ac_status"><%= basic_info[0].active_flag != 'N' ? 'Active' : 'Deactive' %></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-6 row">
+                        <div class="col-md-12 mb-3">
                             <span class="font-weight-bold">Document:</span>
-                            <div class="col-md-3">
-                                <% if (fileType === 'pdf') { %>
-                                    <a href="http://202.21.38.178:3000/uploads/<%= fdt.file_path %>" target="_blank"><img src="/img/pdf_logo.png" alt="" width="50" height="50"></a>
-                                    <!-- <iframe src ="http://202.21.38.178:3000/uploads/<%= fdt.file_path %>" width="100%" height="400px"></iframe> -->
-                                <% } else if (fileType == 'png' || fileType == 'jpg' || fileType == 'jpeg') { %>
-                                    <img src="http://202.21.38.178:3000/uploads/<%= fdt.file_path %>" alt="" srcset="" width="50" height="50">
-                                <% } else { %>
-                                    <p>Unsupported file type</p>
-                                <% } %>
-                            </div>
-                        <%})
-                    } %>
+                        </div>
+                        <div class="col-md-12">
+                            <% if(doc_file.length > 0){
+                                doc_file.forEach(fdt => {
+                                    var fileType = fdt.file_path.split('.');
+                                    fileType = fileType[fileType.length-1]
+                                    %>
+                                    <!-- <div class="col-md-3"> -->
+                                        <% if (fileType === 'pdf') { %>
+                                            <a href="http://202.21.38.178:3000/uploads/<%= fdt.file_path %>" target="_blank"><img src="/img/pdf_logo.png" alt="" width="50" height="50"></a>
+                                            <!-- <iframe src ="http://202.21.38.178:3000/uploads/<%= fdt.file_path %>" width="100%" height="400px"></iframe> -->
+                                        <% } else if (fileType == 'png' || fileType == 'jpg' || fileType == 'jpeg') { %>
+                                            <img src="http://202.21.38.178:3000/uploads/<%= fdt.file_path %>" alt="" srcset="" width="50" height="50">
+                                        <% } else { %>
+                                            <p>Unsupported file type</p>
+                                        <% } %>
+                                <%})
+                            } %>
+                        </div>
+                    </div>
                 </div>
-                <h4 style="background-color: #d81b60; width: 90px; color: white; border: 15px;  padding:6px;">Images</h4>
-                <div class="row">
+                <div class="row mt-3" style="background-color: aliceblue;
+                width: 76vw;
+                border: 2px solid #dc3545;
+                padding: 17px;
+                border-radius: 18px;">
+                <div class="col-md-12 mb-3">
+                    <h5 style="background-color: #d81b60; width: 100px; color: white; border: 15px;  padding:6px; border-radius: 8px"><i class="fas fa-camera">&nbsp;Images</i></h5>
+                </div>
+                <!-- <div class="row"> -->
                     <% if(profile_img.length > 0){
                         profile_img.forEach(dt => {%>
-                            <div class="col-md-3">
+                            <div class="col-md-1">
                             <img src="http://202.21.38.178:3000/uploads/<%= dt.file_path %>" alt="" srcset="" width="50" height="50">
                             </div>
                         <%})
                     } %>
                     <% if(multiple_photo.length > 0){
                         multiple_photo.forEach(hdt => {%>
-                            <div class="col-md-3">
+                            <div class="col-md-1">
                                 <img src="http://202.21.38.178:3000/uploads/<%= hdt.file_path %>" alt="" srcset="" width="50" height="50">
                             </div>
                         <%})
                     } %>
-                  </div>
-                <h4 style="background-color: #d81b60; width: 250px; color: white; border: 15px;  padding:6px;">Documents Verification</h4>
-                  <div class="row">
-                    <div class="col-md-6">
-                        <p>
-                            <span class="font-weight-bold">Document Verify:</span>&nbsp;
-                            <label for="Y">Verified</label>
-                            <input type="radio" id="Y" name="option" value="Y">&nbsp;
-                            
-                            <label for="N">Not Verified</label>
-                            <input type="radio" id="N" name="option" value="N">
-                        </p>
-                    </div>
-                    <div class="col-md-6">
-                        <p>
-                            <span class="font-weight-bold ">Status:</span>&nbsp;
-                            <label for="Y">Active</label>
-                            <input type="radio" id="Y" name="option" value="Y">&nbsp;
-                            
-                            <label for="N">Deactive</label>
-                            <input type="radio" id="N" name="option" value="N">
-                        </p>
-                    </div>
-                  </div>
                 </div>
+                <input type="hidden" name="userTableId" id="userTableId" value="<%= id %>">
+                  <!-- </div> -->
+                  <!-- <div class="row mt-3" style="background-color: aliceblue;
+                width: 76vw;
+                border: 2px solid #dc3545;
+                padding: 17px;
+                border-radius: 18px;">
+                  <h5 style="height: 3vw;background-color: #d81b60; width: 283px; color: white; border: 15px;  padding:6px; border-radius: 8px;"><i class="fas fa-paperclip">&nbsp;Documents Verification</i></h5>
+                    <div class="col-md-12">
+                    <div class="col-6">
+                        <span class="font-weight-bold">Document Verify:
+                        </span>
+                            <div class="">
+                                <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                                <label class="custom-control custom-switch" for="customSwitch1">Not Verified</label>
+                              </div>
+                    </div>
+                </div>
+                  </div> -->
                 <!-- /.card-body -->
               </div>
               <!-- /.card -->
