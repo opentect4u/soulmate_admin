@@ -329,10 +329,10 @@
                                     %>
                                     <!-- <div class="col-md-3"> -->
                                         <% if (fileType === 'pdf') { %>
-                                            <a href="http://202.21.38.178:3000/uploads/<%= fdt.file_path %>" target="_blank"><img src="/img/pdf_logo.png" alt="" width="50" height="50"></a>
-                                            <!-- <iframe src ="http://202.21.38.178:3000/uploads/<%= fdt.file_path %>" width="100%" height="400px"></iframe> -->
+                                            <a href="https://api.mysoulmate.co.in//uploads/<%= fdt.file_path %>" target="_blank"><img src="/img/pdf_logo.png" alt="" width="50" height="50"></a>
+                                            <!-- <iframe src ="https://api.mysoulmate.co.in//uploads/<%= fdt.file_path %>" width="100%" height="400px"></iframe> -->
                                         <% } else if (fileType == 'png' || fileType == 'jpg' || fileType == 'jpeg') { %>
-                                            <img src="http://202.21.38.178:3000/uploads/<%= fdt.file_path %>" alt="" srcset="" width="50" height="50">
+                                            <img src="https://api.mysoulmate.co.in//uploads/<%= fdt.file_path %>" alt="" srcset="" width="50" height="50">
                                         <% } else { %>
                                             <p>Unsupported file type</p>
                                         <% } %>
@@ -353,14 +353,14 @@
                     <% if(profile_img.length > 0){
                         profile_img.forEach(dt => {%>
                             <div class="col-md-1">
-                            <img src="http://202.21.38.178:3000/uploads/<%= dt.file_path %>" alt="" srcset="" width="50" height="50">
+                            <img src="https://api.mysoulmate.co.in//uploads/<%= dt.file_path %>" alt="" srcset="" width="50" height="50">
                             </div>
                         <%})
                     } %>
                     <% if(multiple_photo.length > 0){
                         multiple_photo.forEach(hdt => {%>
                             <div class="col-md-1">
-                                <img src="http://202.21.38.178:3000/uploads/<%= hdt.file_path %>" alt="" srcset="" width="50" height="50">
+                                <img src="https://api.mysoulmate.co.in//uploads/<%= hdt.file_path %>" alt="" srcset="" width="50" height="50">
                             </div>
                         <%})
                     } %>
