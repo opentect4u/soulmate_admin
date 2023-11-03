@@ -41,6 +41,7 @@
                         <p>
                             <span class="font-weight-bold">Profile ID:</span>
                             <span class="pl-2"><%= basic_info.length > 0 ?  basic_info[0].profile_id : '' %></span>
+                            <input type="hidden" name="pro_id" id="pro_id" value="<%= basic_info.length > 0 ?  basic_info[0].profile_id : '' %>">
                         </p>
                     </div>
                     <div class="col-md-6">
@@ -52,7 +53,8 @@
                     <div class="col-md-6">
                         <p>
                             <span class="font-weight-bold">Phone NO:</span>
-                            <span class="pl-2"><%= basic_info[0].email_id ? basic_info[0].phone_no : '' %></span>
+                            <span class="pl-2"><%= basic_info[0].phone_no ? basic_info[0].phone_no : '' %></span>
+                            <input type="hidden" name="phone_no" id="phone_no" value="<%= basic_info[0].phone_no ? basic_info[0].phone_no : '' %>">
                         </p>
                     </div>
                     <div class="col-md-6">
@@ -302,10 +304,12 @@
                     <div class="col-4">
                         <span class="font-weight-bold">Document Verification:</span>
                         <div class="custom-control custom-switch">
+                            <div class="">
                             <input type="checkbox" class="custom-control-input" id="toggleButton" <%= basic_info[0].profile_verify_flag != 'N' ? 'checked' : '' %>>
                             <label class="custom-control-label" for="toggleButton">
                                 <span id="status"><%= basic_info[0].profile_verify_flag != 'N' ? 'Verified' : 'Not Verified' %></span>
                             </label>
+                        </div>
                         </div>
                     </div>
                     <div class="col-4">

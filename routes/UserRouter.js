@@ -1,3 +1,4 @@
+const { ActiveProf, DeActiveProf, ActiveKyc, DeActiveKyc } = require("../module/SMSModule");
 const {
   getUserList,
   user_groom_loc,
@@ -115,13 +116,35 @@ userRouter.get("/view_user", async (req, res) => {
 userRouter.post('/update_active_flag', async (req, res) => {
   var data = req.body
   var res_dt = await getActive(data);
+  switch (data.flag) {
+    case 'Y':
+      await ActiveProf(data.phone, data.pro_id)
+      break;
+    case 'N':
+      await DeActiveProf(data.phone, data.pro_id)
+      break;
+  
+    default:
+      break;
+  } 
+  // console.log(res_dt);
   res.send(res_dt)
-  console.log(res_dt);
 })
 
 userRouter.post('/update_profile_verify', async (req, res) => {
   var data = req.body;
   var res_dt = await getProfileVerify(data);
+  switch (data.flag) {
+    case 'Y':
+      await ActiveKyc(data.phone, data.pro_id)
+      break;
+    case 'N':
+      await DeActiveKyc(data.phone, data.pro_id)
+      break;
+  
+    default:
+      break;
+  }
   res.send(res_dt)
 })
 
