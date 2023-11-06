@@ -5,6 +5,8 @@ const session = require("express-session");
 const bodyParser = require("body-parser");
 const { userRouter } = require("./routes/UserRouter");
 const { DashboardRouter } = require("./routes/DashboardRouter");
+const { paymentRouter } = require("./routes/PaymentRouter");
+const { add_typeRouter } = require("./routes/add_typeRouter");
 app = express();
 expressLayouts = require("express-ejs-layouts"),
   path = require("path"),
@@ -69,6 +71,8 @@ app.get("/login", (req, res) => {
 app.use("/admin", AdminRouter);
 app.use("/user", userRouter);
 app.use("/dashboard", DashboardRouter);
+app.use("/payment", paymentRouter);
+app.use("/payment", add_typeRouter);
 
 app.listen(port, (err) => {
   if (err) throw new Error(err);
