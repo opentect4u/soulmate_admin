@@ -37,7 +37,7 @@
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
             <a href="/dashboard" class="nav-link <%= path == '/dashboard' ? 'active' : '' %>">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-tachometer-alt"></i>&nbsp;
               <p>
                 Dashboard
               </p>
@@ -53,7 +53,7 @@
           </li>
           <li class="nav-item menu-open">
             <a href="#" class="nav-link">
-              <i class="fas fa-money"></i>
+              <i class="fa fa-credit-card"></i>&nbsp;
               <p>
                 Payment Details
                 <i class="right fas fa-angle-left"></i>
@@ -62,19 +62,19 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="/payment/subscription_type" class="nav-link <%= path == '/payment/subscription_type' ? 'active' : '' %>">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fa fa-ellipsis-h"></i>&nbsp;
                   <p>Subscription Type</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                <a href="/payment/subscription_dtls" class="nav-link <%= path == '/payment/subscription_dtls' ? 'active' : '' %>">
+                  <i class="fa fa-address-card"></i>&nbsp;
                   <p>Subscription Details</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                <a href="/payment/subscription_amount" class="nav-link <%= path == '/payment/subscription_amount' ? 'active' : '' %>">
+                  <i class="fas fa-rupee-sign"></i>&nbsp;
                   <p>Tennure & Amount</p>
                 </a>
               </li>

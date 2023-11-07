@@ -1,0 +1,73 @@
+<section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <i class='fa fa-plus-circle' style='font-size:20px;'>&nbsp;<span style="font-size: 25px;">Add Tennure & Month</span style="font-size: 25px;"></i>&nbsp;
+            <ul class="breadcrumb">
+              <li><a href="/dashboard">Dashboard</a></li>&nbsp; / &nbsp;
+              <li><a href="/payment/subscription_dtls">Tennure & Month</a></li>&nbsp; / &nbsp;
+              <li>Add Tennure & Month</li>
+            </ul>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+            <div class="card-body">
+                <form method="POST" action="/payment/save_dtls" class="">
+                <div class="row mb-2">
+                <div class="col-6">
+                  <div class="form-group">
+                    <label style="font-size: 18px;">Select Type</label>
+                    <select class="custom-select">
+                      <option value="" selected>Select</option>
+                      <option value="">Basic</option>
+                      <option value="">Standard</option>
+                      <option value="">Premium</option>
+                    </select>
+                  </div> 
+                   </div>
+                </div>
+                <div class="row mb-2">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="exampleSelectBorder">Actual Price</label>
+                      <input class="form-control" id="actual_price" name="actual_price" type="number" placeholder="Actual Price" value="">
+                    </div> 
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label for="exampleSelectBorder">Discount</label>
+                        <input class="form-control" id="discount" name="discount" type="number" placeholder="Discount" value="">
+                      </div>
+                  </div>
+                </div>
+                <div class="row mb-2">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="exampleSelectBorder">Amount</label>
+                      <input class="form-control" id="amount" name="amount" type="number" placeholder="Amount" value="">
+                    </div> 
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label for="exampleSelectBorder">Tennue(In Month)</label>
+                        <input class="form-control" id="tennure" name="tennure" type="number" placeholder="Tennue" value="">
+                      </div>
+                  </div>
+                </div>
+                <div class="row">
+                     <div class="col-12">
+                    <button class="btn btn-primary" type="submit" style="margin-left: 35vw;">Submit</button>
+                   </div>
+                </div>
+            </form>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
