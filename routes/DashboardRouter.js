@@ -4,7 +4,7 @@ DashboardRouter = express.Router();
 DashboardRouter.use((req, res, next) => {
     var user = req.session.user
     if(!user){
-    res.redirect("/login")
+        res.redirect("/login")
     }
     next()
 })

@@ -23,11 +23,17 @@
                 <div class="col-6">
                   <div class="form-group">
                     <label style="font-size: 18px;">Select Type</label>
-                    <select class="custom-select" id="dropdown" name="selectedOption">
-                      <option value="" selected>Select</option>
-                      <option value="B">Basic</option>
-                      <option value="S">Standard</option>
-                      <option value="P">Premium</option>
+                    <select class="custom-select" id="dropdown" name="sub_id">
+                      <option selected="" value="">Select Type</option>
+                      <% if(type_list.length > 0){
+                        type_list.forEach(dt => {
+                          var selected = ''
+                          if(sub_id > 0 && sub_id == dt.id)
+                            selected = 'selected'
+                          %>
+                            <option value="<%= dt.id %>" <%= selected %>><%= dt.pay_name %></option>
+                        <%})
+                         } %>
                     </select>
                   </div> 
                    </div>
@@ -44,16 +50,45 @@
                           </tr>
                       </thead>
                       <tbody>
-                        <tr id="tr_1">
-                          <td>
-                            <textarea class="form-control" row="3" id="dtls" name="dtls" placeholder="Write something here...."></textarea>
-                          </td>
-                          <td></td>
-                      </tr>
+                        <% if(sub_id > 0){
+                          if(res_dt.length > 0){
+                            var i = 1
+                            res_dt.forEach(dt => { %>
+                              <tr id="tr_<%= i %>">
+                                <td>
+                                  <textarea class="form-control" row="3" id="dtls" name="dtls" placeholder="Write something here...."><%= dt.subscription_dtls %></textarea>
+                                </td>
+                                <td>
+                                  <button type="button" class="btn btn-danger" onclick="del_row('<%= i %>')" style ="margin-left:5vw"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                </td>
+                              </tr>
+                            <% i++; })
+                          }else{ %> 
+                            <tr id="tr_1">
+                              <td>
+                                <textarea class="form-control" row="3" id="dtls_1" name="dtls" placeholder="Write something here...."></textarea>
+                              </td>
+                              <td>
+                                <button type="button" class="btn btn-danger" onclick="del_row(1)" style ="margin-left:5vw"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                              </td>
+                            </tr>
+                        <% }
+                        }else{ %> 
+                          <tr id="tr_1">
+                            <td>
+                              <textarea class="form-control" row="3" id="dtls_1" name="dtls" placeholder="Write something here...."></textarea>
+                            </td>
+                            <td>
+                              <button type="button" class="btn btn-danger" onclick="del_row(1)" style ="margin-left:5vw"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            </td>
+                          </tr>
+                        <% } %>
+                        
                       </tbody>
                   </table>
                   </div>
                 </div>
+                <input type="hidden" name="sub_id_input" value="<%= sub_id %>">
                 <div class="row">
                      <div class="col-12">
                     <button class="btn btn-primary" type="submit" style="margin-left: 35vw;">Submit</button>
@@ -81,27 +116,9 @@
     `);
   }
   function del_row(id){
-        if (confirm('Are you sure you want to delete?')) {
-            $.ajax({
-                method: "POST",
-                url: "/delete_my_project",
-                data: { id: id },
-                dataType: "html",
-                beforeSend: function () {
-                    $(".loader-wrapper").show();
-                },
-                success: function (result) {
-                    var res = JSON.parse(result);
-                    console.log(res);
-                    if (res.suc > 0 && res.msg.length > 0){
-                        $(`#tr_${id}`).remove()
-                    }
-                },
-                complete: function () {
-                    $(".loader-wrapper").hide();
-                }
-            })
-        }
+    if (confirm('Are you sure you want to delete?')) {
+      $(`#tr_${id}`).remove()
     }
+  }
   </script>
 

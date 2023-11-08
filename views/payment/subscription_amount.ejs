@@ -31,7 +31,7 @@
                 <div class="row mt-3">
                       <div class="col-12">
                         <!-- <button type="button" class="btn btn-light" style="border-radius: 9px; margin-left: 71vw;"><a href="/payment/add_type">Add Type</a></button> -->
-                        <a href="/payment/add_amount" class="btn btn-primary" style="margin-left: 66vw; border-radius: 7px;">Add Tennure & Month</a>
+                        <a href="/payment/add_amount" class="btn btn-primary" style="margin-left: 64vw; border-radius: 7px;">Add Tennure & Month</a>
                       </div>
                     </div>
                 <div class="card-body">
@@ -46,7 +46,18 @@
                     </tr>
                     </thead>
                     <tbody>                     
-                      
+                      <% if(amount_data.msg.length > 0){
+                        var i = 1
+                        amount_data.msg.forEach(dt => { %>
+                      <tr>
+                        <td><%= i %></td>
+                        <td><%= dt.pay_name %></td>
+                        <td><%= dt.amount %></td>
+                        <td><%= dt.tennure_period %></td>
+                        <td><a class="btn btn-primary view-button" href="/payment/add_amount?id=<%= dt.id %>"><i class='fas fa-eye'></i</a></td>
+                      </tr>
+                    <% i++; })
+                    } %>
                     </tbody>
                   </table>
                 </div>
