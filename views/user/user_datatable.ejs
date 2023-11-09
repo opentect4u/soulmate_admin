@@ -33,6 +33,41 @@
                     </div> -->
                     <!-- /.card-header -->
                     <div class="card-body">
+                      <div class="col-sm-6">
+                        <!-- radio -->
+                        <div class="form-group clearfix">
+                          <div class="icheck-primary d-inline">
+                            <input type="radio" id="Default" name="radio_type" value="Y" checked>
+                            <label for="Default">
+                              Default
+                            </label>
+                          </div>
+                          <div class="icheck-primary d-inline">
+                            <input type="radio" id="No" name="radio_type" value="N">
+                            <label for="No">
+                              Free
+                            </label>
+                          </div>
+                          <div class="icheck-primary d-inline">
+                            <input type="radio" id="Basic" name="radio_type" value="Y">
+                            <label for="Basic">
+                              Basic
+                            </label>
+                          </div>
+                          <div class="icheck-primary d-inline">
+                            <input type="radio" id="Standard" name="radio_type" value="Y">
+                            <label for="Standard">
+                              Standard
+                            </label>
+                          </div>
+                          <div class="icheck-primary d-inline">
+                            <input type="radio" id="Premium" name="radio_type" value="Y">
+                            <label for="Premium">
+                              Premium
+                            </label>
+                          </div>
+                        </div>
+                      </div>
                       <table id="example1" class="table table-bordered table-striped dataTables">
                         <thead>
                         <tr>
@@ -60,7 +95,7 @@
                               <td><%= dt.u_name %></td>
                               <td><%= dt.email_id %></td>
                               <td><%= dt.phone_no %></td>
-                              <td><%= dt.pay_flag=='Y' ? dt.plan_id : 'No' %></td>
+                              <td><%= dt.pay_flag=='Y' ? dt.plan_id : 'Free' %></td>
                               <td>
                                 <select class="ac_active_flag" data-user-id="<%= dt.id %>">
                                   <option value="Y" <%= dt.active_flag == 'Y' ? 'selected' : '' %>>Active</option>
@@ -84,4 +119,9 @@
             </div>
             <!-- /.container-fluid -->
           </section>
+  <script>
+
+  </script>
+
+
     <!-- </div> -->

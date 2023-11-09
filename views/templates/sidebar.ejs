@@ -2,7 +2,7 @@
   <aside class="main-sidebar elevation-4 sidebar-light-maroon">
     <!-- Brand Logo -->
     <a href="http://soulmate.opentech4u.co.in/#/home" class="brand-link navbar-light">
-      <img src="/img/favicon.ico" alt="AdminLTE Logo"  width="35px" style="margin-left: 21px;" >
+      <img src="/img/logo_new.png" alt=""  width="50px" style="margin-left: 21px;" >
       <span class="brand-text font-weight-light" style="color: #d32c3c;font-family: cursive;"><b>My Soul Mate</b></span>
     </a>
 
@@ -51,7 +51,7 @@
               </p>
               </a>
           </li>
-          <li class="nav-item <%= path == '/payment/subscription_type' || '/payment/subscription_dtls' || '/payment/subscription_amount' ? 'menu-open' : '' %>">
+          <li class="nav-item <%= path == '/payment/subscription_type' || path == '/payment/subscription_dtls' ||  path == '/payment/subscription_amount' ? 'menu-open' : '' %>">
             <a href="#" class="nav-link">
               <i class="fa fa-credit-card"></i>&nbsp;
               <p>
@@ -61,19 +61,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/payment/subscription_type" class="nav-link <%= path == '/payment/subscription_type' ? 'active' : '' %>">
+                <a href="/payment/subscription_type" class="nav-link <%= path == '/payment/subscription_type' %>">
                   <i class="fa fa-ellipsis-h"></i>&nbsp;
                   <p>Subscription Type</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/payment/subscription_dtls" class="nav-link <%= path == '/payment/subscription_dtls' ? 'active' : '' %>">
+                <a href="/payment/subscription_dtls" class="nav-link <%= path == '/payment/subscription_dtls' %>">
                   <i class="fa fa-address-card"></i>&nbsp;
                   <p>Subscription Details</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/payment/subscription_amount" class="nav-link <%= path == '/payment/subscription_amount' ? 'active' : '' %>">
+                <a href="/payment/subscription_amount" class="nav-link <%= path == '/payment/subscription_amount' %>">
                   <i class="fas fa-rupee-sign"></i>&nbsp;
                   <p>Tennure & Amount</p>
                 </a>
