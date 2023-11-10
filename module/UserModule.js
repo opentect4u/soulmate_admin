@@ -1,12 +1,12 @@
 const { db_Select, db_Insert } = require("./MasterModule");
 
 
-const getUserList = () => {
+const getUserList = (flag= 'A') => {
   return new Promise(async (resolve, reject) => {
     var select =
         "id,profile_id,u_name,phone_no,email_id,file_path,pay_flag,active_flag,plan_id,created_dt",
       table_name = "td_user_profile",
-      whr = null,
+      whr = flag!= 'A' ? `pay_flag='${flag}'` : null,
       order = null;
     var res_dt = db_Select(select, table_name, whr, order);
     resolve(res_dt);
@@ -173,6 +173,8 @@ const getProfileVerify = (data) => {
     var res_dt = db_Insert(table_name, fields, values, whr, flag);
     resolve(res_dt);
   })
-}
+};
+
+
 
 module.exports = { getUserList, user_groom_loc, user_basic_info, user_hobbies, userProfile, user_multiImg, user_Doc, user_Doc_File, getActive, getProfileVerify };

@@ -10,6 +10,7 @@ const {
   user_Doc_File,
   getActive,
   getProfileVerify,
+  getPayflag,
 } = require("../module/UserModule");
 const {
   field_height,
@@ -113,23 +114,6 @@ userRouter.get("/view_user", async (req, res) => {
 
 });
 
-userRouter.post('/update_active_flag', async (req, res) => {
-  var data = req.body
-  var res_dt = await getActive(data);
-  switch (data.flag) {
-    case 'Y':
-      await ActiveProf(data.phone, data.pro_id)
-      break;
-    case 'N':
-      await DeActiveProf(data.phone, data.pro_id)
-      break;
-  
-    default:
-      break;
-  } 
-  // console.log(res_dt);
-  res.send(res_dt)
-})
 
 userRouter.post('/update_profile_verify', async (req, res) => {
   var data = req.body;
@@ -146,6 +130,13 @@ userRouter.post('/update_profile_verify', async (req, res) => {
       break;
   }
   res.send(res_dt)
+});
+
+userRouter.post('/update_pay_flag', async(req, res) => {
+  var data = req.body;
+  flag = req.body.payflag;
+  var res_dt = await getUserList(flag);
+  res.send(res_dt);
 })
 
 module.exports = { userRouter };
