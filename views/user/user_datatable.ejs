@@ -115,7 +115,7 @@
           </section>
   
           <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script>
+<!-- <script>
   var columns = [];
   $(document).ready(function(){
     $('input[name="payflag"]').on('change',function(){
@@ -153,7 +153,12 @@
       });
     })
     })
-</script>
-        
+</script>  -->
 
+<script>
+$('input[type=radio]').change(function(){
+        var value = $( 'input[name=payflag]:checked' ).val();
+        // alert(value);
+    });
+</script>
     <!-- </div> -->

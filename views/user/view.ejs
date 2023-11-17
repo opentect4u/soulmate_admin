@@ -35,7 +35,7 @@
                   border: 2px solid #dc3545;
                   padding: 17px;
                   border-radius: 18px;">
-                    <h5 style="background-color: #d81b60; width: 180px; color: white; border: 15px;  padding:5px; border-radius: 8px;"><i class='fas fa-address-card'>&nbsp;User Basic Info</i></h5>
+                    <h6 style="background-color: #d81b60; width: 141px; color: white; border: 15px;  padding:5px; border-radius: 8px;"><i class='fas fa-address-card'>&nbsp;User Basic Info</i></h6>
                     <div class="row">
                     <div class="col-md-6">
                         <p>
@@ -72,10 +72,10 @@
                     <div class="col-md-6">
                         <p>
                             <span class="font-weight-bold">DOB:</span>
-                            <span class="pl-2"><%= basic_info.length > 0 ?  basic_info[0].dob : '' %></span>
+                            <span class="pl-2"><%= basic_info.length > 0 ?  basic_info[0].dob.toLocaleString() : '' %></span>
                         </p>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6"> 
                         <p>
                             <span class="font-weight-bold">Lives In:</span>
                             <span class="pl-2"><%= basic_info.length > 0 ?  basic_info[0].country_name : '' %>,<%= basic_info.length > 0 ?  basic_info[0].state_name : '' %>,<%= basic_info.length > 0 ?  basic_info[0].city_name : '' %></span>
@@ -214,7 +214,7 @@
             border: 2px solid #dc3545;
             padding: 17px;
             border-radius: 18px;">
-                    <h5 style="background-color: #d81b60; width: 190px; color: white; border: 15px;  padding:5px;border-radius: 8px"><i class='fas fa-user-lock'>&nbsp;Professional Info</i></h5>
+                    <h6 style="background-color: #d81b60; width: 151px; color: white; border: 15px;  padding:5px;border-radius: 8px"><i class='fas fa-user-lock'>&nbsp;Professional Info</i></h6>
                     <div class="row mt-3">
                     <div class="col-md-6">
                         <p>
@@ -253,7 +253,7 @@
                 border: 2px solid #dc3545;
                 padding: 17px;
                 border-radius: 18px;">
-                    <h5 style="background-color: #d81b60; width: 200px; color: white; border: 15px;  padding:5px; border-radius: 8px"><i class="fas fa-heart">&nbsp;Hobbies & Interest</i></h5>
+                    <h6 style="background-color: #d81b60; width: 167px; color: white; border: 15px;  padding:5px; border-radius: 8px"><i class="fas fa-heart">&nbsp;Hobbies & Interest</i></h6>
                     <div class="row">
                     <div class="col-md-6">
                         <p>
@@ -293,7 +293,7 @@
                 padding: 17px;
                 border-radius: 18px;">
                     <div class="col-12">
-                        <h5 style="background-color: #d81b60; width: 180px; color: white; border: 15px;  padding:6px; border-radius: 8px"><i class="fas fa-layer-group">&nbsp;Documents Info</i></h5>
+                        <h6 style="background-color: #d81b60; width: 141px; color: white; border: 15px;  padding:6px; border-radius: 8px"><i class="fas fa-layer-group">&nbsp;Documents Info</i></h6>
                     </div>
                     <div class="col-4">
                         <p>
@@ -351,7 +351,7 @@
                 padding: 17px;
                 border-radius: 18px;">
                 <div class="col-md-12 mb-3">
-                    <h5 style="background-color: #d81b60; width: 100px; color: white; border: 15px;  padding:6px; border-radius: 8px"><i class="fas fa-camera">&nbsp;Images</i></h5>
+                    <h6 style="background-color: #d81b60; width: 83px; color: white; border: 15px;  padding:6px; border-radius: 8px"><i class="fas fa-camera">&nbsp;Images</i></h6>
                 </div>
                 <!-- <div class="row"> -->
                     <% if(profile_img.length > 0){
@@ -376,7 +376,7 @@
                 border: 2px solid #dc3545;
                 padding: 17px;
                 border-radius: 18px;">
-                  <h5 style="height: 3vw;background-color: #d81b60; width: 283px; color: white; border: 15px;  padding:6px; border-radius: 8px;"><i class="fas fa-paperclip">&nbsp;Documents Verification</i></h5>
+                  <h6 style="height: 3vw;background-color: #d81b60; width: 283px; color: white; border: 15px;  padding:6px; border-radius: 8px;"><i class="fas fa-paperclip">&nbsp;Documents Verification</i></h6>
                     <div class="col-md-12">
                     <div class="col-6">
                         <span class="font-weight-bold">Document Verify:
