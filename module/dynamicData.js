@@ -274,6 +274,10 @@ module.exports = {
     S: "Same as my Location",
     D: "Different Location",
   },
+  field_gender: {
+    M: "Male",
+    F: "Female",
+  },
   field_Hobbies_Interests: {
     Actin: "Acting",
     Adve: "Adventure sports",

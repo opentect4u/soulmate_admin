@@ -65,6 +65,12 @@
                     </div>
                     <div class="col-md-6">
                         <p>
+                            <span class="font-weight-bold">Gender:</span>
+                            <span class="pl-2"><%= basic_info.length > 0 ?  (basic_info[0].gender ? gender[basic_info[0].gender] : '') : '' %></span>
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <p>
                             <span class="font-weight-bold">Birth Location:</span>
                             <span class="pl-2"><%= basic_info.length > 0 ?  basic_info[0].location_id : '' %></span>
                         </p>
@@ -149,7 +155,7 @@
                     </div>
                     <div class="col-md-6">
                         <p>
-                            <span class="font-weight-bold">Body_Type:</span>
+                            <span class="font-weight-bold">Body Type:</span>
                             <span class="pl-2"><%= basic_info.length > 0 ? ( basic_info[0].body_type ? bod_type[ basic_info[0].body_type] : '') : '' %></span>
                         </p>
                     </div>

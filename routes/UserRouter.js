@@ -33,6 +33,7 @@ const {
   ac_for,
   field_disability,
   field_body_type,
+  field_gender,
 } = require("../module/dynamicData");
 
 const express = require("express"),
@@ -88,6 +89,7 @@ userRouter.get("/view_user", async (req, res) => {
     doc_type: doc_type.suc > 0 ? doc_type.msg : [],
     doc_file: doc_file.suc > 0 ? doc_file.msg :[],
     ac_for: ac_for,
+    gender: field_gender,
     height: field_height,
     weight: field_weight,
     bod_type: field_body_type,
