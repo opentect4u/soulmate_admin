@@ -13,6 +13,17 @@ const getUserList = (flag= 'A') => {
   });
 };
 
+const getList = (id) => {
+  return new Promise(async (resolve, reject) => {
+    var select = "id,profile_id,u_name,phone_no,email_id,created_dt",
+    table_name = "td_user_profile",
+    whr = id > 0 ? `id=${id}` : null,
+    order = null;
+    var res_dt = await db_Select(select,table_name,whr,order);
+    resolve(res_dt);
+  })
+};
+
 const user_groom_loc = (data) => {
   return new Promise(async (resolve, reject) => {
     var select =
@@ -177,4 +188,5 @@ const getProfileVerify = (data) => {
 
 
 
-module.exports = { getUserList, user_groom_loc, user_basic_info, user_hobbies, userProfile, user_multiImg, user_Doc, user_Doc_File, getActive, getProfileVerify };
+
+module.exports = { getUserList, user_groom_loc, user_basic_info, user_hobbies, userProfile, user_multiImg, user_Doc, user_Doc_File, getActive, getProfileVerify,getList };

@@ -366,14 +366,15 @@
                             <img src="https://api.mysoulmate.co.in//uploads/<%= dt.file_path %>" alt="" srcset="" width="50" height="50">
                             </div>
                         <%})
-                    } %>
-                    <% if(multiple_photo.length > 0){
+                    } else if(multiple_photo.length > 0){
                         multiple_photo.forEach(hdt => {%>
                             <div class="col-md-1">
                                 <img src="https://api.mysoulmate.co.in//uploads/<%= hdt.file_path %>" alt="" srcset="" width="50" height="50">
                             </div>
                         <%})
-                    } %>
+                    } else { %>
+                        <p>No image uploaded</p>
+                   <% } %>
                 </div>
                 <input type="hidden" name="userTableId" id="userTableId" value="<%= id %>">
                   <!-- </div> -->

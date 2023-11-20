@@ -1,4 +1,4 @@
-const { ActiveProf, DeActiveProf, ActiveKyc, DeActiveKyc } = require("../module/SMSModule");
+const { ActiveProf, DeActiveProf, ActiveKyc, DeActiveKyc, ActiveStatus, DeActiveStatus } = require("../module/SMSModule");
 const {
   getUserList,
   user_groom_loc,
@@ -11,6 +11,7 @@ const {
   getActive,
   getProfileVerify,
   getPayflag,
+  getList,
 } = require("../module/UserModule");
 const {
   field_height,
@@ -134,11 +135,32 @@ userRouter.post('/update_profile_verify', async (req, res) => {
   res.send(res_dt)
 });
 
+
 userRouter.post('/update_pay_flag', async(req, res) => {
   var data = req.body;
   flag = req.body.payflag;
   var res_dt = await getUserList(flag);
   res.send(res_dt);
-})
+});
+
+userRouter.post("/update_active_flag", async (req, res) => {
+  var data = req.body;
+  var res_dt = await getList(data.id)
+  switch (data.flag){
+    case 'Y' :
+      await ActiveStatus(res_dt.msg[0].profile_id, res_dt.msg[0].email_id, res_dt.msg[0].u_name)
+      await ActiveProf(res_dt.msg[0].phone_no, res_dt.msg[0].profile_id)
+      break;
+
+      case 'N' :
+        await DeActiveStatus(res_dt.msg[0].profile_id, res_dt.msg[0].email_id, res_dt.msg[0].u_name)
+        await DeActiveProf(res_dt.msg[0].phone_no, res_dt.msg[0].profile_id)
+        break;
+
+      default:
+        break;
+  }
+  res.send(res_dt)
+});
 
 module.exports = { userRouter };
