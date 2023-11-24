@@ -137,8 +137,8 @@ module.exports = {
               // subject: 'Hello from Nodemailer with OAuth2',
               // text: 'This is a test email sent from Nodemailer with OAuth2 in Node.js.',
               from: 'info@mysoulmate.co.in',
-              to: `${email_id}`,
-              // to: 'tanmoy@mysoulmate.co.in',
+              // to: `${email_id}`,
+              to: 'sayantika@synergicsoftek.in',
               subject: 'Profile Active',
               html: `<!DOCTYPE html>
               <head>
@@ -289,8 +289,8 @@ module.exports = {
               // subject: 'Hello from Nodemailer with OAuth2',
               // text: 'This is a test email sent from Nodemailer with OAuth2 in Node.js.',
               from: 'info@mysoulmate.co.in',
-              to: `${email_id}`,
-              // to: 'tanmoy@mysoulmate.co.in',
+              // to: `${email_id}`,
+              to: 'sayantika@synergicsoftek.in',
               subject: 'Profile Deactive',
               html: `<!DOCTYPE html>
               <head>
