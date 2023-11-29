@@ -53,8 +53,8 @@
                     <div class="col-md-6">
                         <p>
                             <span class="font-weight-bold">Phone NO:</span>
-                            <span class="pl-2"><%= basic_info[0].phone_no ? basic_info[0].phone_no : '' %></span>
-                            <input type="hidden" name="phone_no" id="phone_no" value="<%= basic_info[0].phone_no ? basic_info[0].phone_no : '' %>">
+                            <span class="pl-2"><%= basic_info.length > 0 ? basic_info[0].phone_no : '' %></span>
+                            <input type="hidden" name="phone_no" id="phone_no" value="<%= basic_info.length > 0 ? basic_info[0].phone_no : '' %>">
                         </p>
                     </div>
                     <div class="col-md-6">
@@ -311,9 +311,9 @@
                         <span class="font-weight-bold">Document Verification:</span>
                         <div class="custom-control custom-switch">
                             <div class="">
-                            <input type="checkbox" class="custom-control-input" id="toggleButton" <%= basic_info[0].profile_verify_flag != 'N' ? 'checked' : '' %>>
+                            <input type="checkbox" class="custom-control-input" id="toggleButton" <%= basic_info.length > 0 ? (basic_info[0].profile_verify_flag != 'N' ? 'checked' : '') : '' %>>
                             <label class="custom-control-label" for="toggleButton">
-                                <span id="status"><%= basic_info[0].profile_verify_flag != 'N' ? 'Verified' : 'Not Verified' %></span>
+                                <span id="status"><%= basic_info.length > 0 ? (basic_info[0].profile_verify_flag != 'N' ? 'Verified' : 'Not Verified') : '' %></span>
                             </label>
                         </div>
                         </div>
@@ -321,9 +321,9 @@
                     <div class="col-4">
                         <span class="font-weight-bold">Profile Active:</span>
                         <div class="custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input" id="ac_active_flag" <%= basic_info[0].active_flag != 'N' ? 'checked' : '' %>>
+                            <input type="checkbox" class="custom-control-input" id="ac_active_flag" <%= basic_info.length > 0 ? (basic_info[0].active_flag != 'N' ? 'checked' : '') : '' %>>
                             <label class="custom-control-label" for="ac_active_flag">
-                                <span id="ac_status"><%= basic_info[0].active_flag != 'N' ? 'Active' : 'Deactive' %></span>
+                                <span id="ac_status"><%= basic_info.length > 0 ? (basic_info[0].active_flag != 'N' ? 'Active' : 'Deactive') : '' %></span>
                             </label>
                         </div>
                     </div>
@@ -361,18 +361,22 @@
                 </div>
                 <!-- <div class="row"> -->
                     <% if(profile_img.length > 0){
-                        profile_img.forEach(dt => {%>
+                        profile_img.forEach(dt => {
+                            if(dt.file_path){%>
                             <div class="col-md-1">
-                            <img src="https://api.mysoulmate.co.in//uploads/<%= dt.file_path %>" alt="" srcset="" width="50" height="50">
+                                <img src="https://api.mysoulmate.co.in/uploads/<%= dt.file_path %>" alt="" srcset="" width="50" height="50">
                             </div>
-                        <%})
-                    } else if(multiple_photo.length > 0){
-                        multiple_photo.forEach(hdt => {%>
+                        <%}})
+                    }
+                    if(multiple_photo.length > 0){
+                        multiple_photo.forEach(hdt => {
+                            if(hdt.file_path){ %>
                             <div class="col-md-1">
-                                <img src="https://api.mysoulmate.co.in//uploads/<%= hdt.file_path %>" alt="" srcset="" width="50" height="50">
+                                <img src="https://api.mysoulmate.co.in/uploads/<%= hdt.file_path %>" alt="" srcset="" width="50" height="50">
                             </div>
-                        <%})
-                    } else { %>
+                        <%}})
+                    }
+                    if(!profile_img[0].file_path && multiple_photo.length == 0) { %>
                         <p>No image uploaded</p>
                    <% } %>
                 </div>
