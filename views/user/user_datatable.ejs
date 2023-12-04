@@ -85,17 +85,7 @@
                               <td><%= i %></td>
                               <td><%= dt.profile_id %></td>
                               <!-- <td><a href="https://api.mysoulmate.co.in//uploads/<%= dt.file_path %>" target="_blank"><img src="https://api.mysoulmate.co.in//uploads/<%= dt.file_path %>" alt="" srcset="" width="50" height="50"></a></td> -->
-                              <td>  <% if(profile_img.length > 0){
-                                profile_img.forEach(dt => {
-                                    if(dt.file_path){%>
-                                    <div class="col-md-1">
-                                        <img src="https://api.mysoulmate.co.in/uploads/<%= dt.file_path %>" alt="" srcset="" width="50" height="50">
-                                    </div>
-                                <%}})
-                            }
-                            if(!profile_img[0].file_path == 0) { %>
-                              <p>No image uploaded</p>
-                         <% } %></td>
+                              <td><img src="https://api.mysoulmate.co.in/uploads/<%= dt.file_path %>" alt="" srcset="" width="50" height="50" style="cursor: pointer;"></td>
                               <td><%= dt.u_name %></td>
                               <td><%= dt.email_id %></td>
                               <td><%= dt.phone_no %></td>
