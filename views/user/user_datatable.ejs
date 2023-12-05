@@ -62,7 +62,7 @@
                           </div>
                         </div>
                       </div> -->
-                      <table id="example1" class="table table-bordered table-striped dataTables">
+                      <table id="" class="table table-bordered table-striped dataTables">
                         <thead>
                         <tr>
                           <th>#</th>
@@ -75,6 +75,7 @@
                           <!-- <th>Subscription Expire</th> -->
                           <th>Status</th>
                           <th>Action</th>
+                          <th>Invoice</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -97,6 +98,7 @@
                                 </select>
                               </td>
                               <td><a class="btn btn-primary view-button" href="/user/view_user?id=<%= dt.id %>"><i class='fas fa-eye'></i</a></td>
+                              <td><a class="btn btn-primary view-button" href="/user/invoice_download"><i class="fa fa-download"></i></a></button></td>  
                             </tr>
                           <% i++; })
                         } %>

@@ -79,4 +79,13 @@ const db_Check = async (fields, table_name, whr) => {
 };
 
 
-module.exports = {db_Select,db_Insert,db_Delete,db_Check}
+const EncryptDataToSend = (data) => {
+    return new Promise((resolve, reject) => {
+        var res_dt = data;
+        res_dt = {suc:res_dt.suc, msg: res_dt.suc > 0 ? Buffer.from(JSON.stringify(res_dt.msg), 'utf8').toString('base64') : res_dt.msg }
+        resolve(res_dt)
+    })
+}
+
+
+module.exports = {db_Select,db_Insert,db_Delete,db_Check, EncryptDataToSend}

@@ -163,4 +163,8 @@ userRouter.post("/update_active_flag", async (req, res) => {
   res.send(res_dt)
 });
 
+userRouter.get("/invoice_download", async (req, res) => {
+  res.render("user/invoice");
+})
+
 module.exports = { userRouter };
