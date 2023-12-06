@@ -52,7 +52,7 @@
               </a>
           </li>
           <li class="nav-item <%= path == '/payment/subscription_type' || path == '/payment/subscription_dtls' ||  path == '/payment/subscription_amount' ? 'menu-open' : '' %>">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link <%= path == '/payment/subscription_type' || path == '/payment/subscription_dtls' ||  path == '/payment/subscription_amount' ? 'active' : '' %>">
               <i class="fa fa-credit-card"></i>&nbsp;
               <p>
                 Payment Details
@@ -61,19 +61,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/payment/subscription_type" class="nav-link <%= path == '/payment/subscription_type' %>">
+                <a href="/payment/subscription_type" class="nav-link <%= path == '/payment/subscription_type' ? 'active' : '' %>">
                   <i class="fa fa-ellipsis-h"></i>&nbsp;
                   <p>Subscription Type</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/payment/subscription_dtls" class="nav-link <%= path == '/payment/subscription_dtls' %>">
+                <a href="/payment/subscription_dtls" class="nav-link <%= path == '/payment/subscription_dtls' ? 'active' : '' %>">
                   <i class="fa fa-address-card"></i>&nbsp;
                   <p>Subscription Details</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/payment/subscription_amount" class="nav-link <%= path == '/payment/subscription_amount' %>">
+                <a href="/payment/subscription_amount" class="nav-link <%= path == '/payment/subscription_amount' ? 'active' : '' %>">
                   <i class="fas fa-rupee-sign"></i>&nbsp;
                   <p>Tennure & Amount</p>
                 </a>

@@ -15,83 +15,93 @@
 
 
   <section class="content">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card card-outline card-info">
-          <!-- /.card-header -->
-          <div class="card-body">
-            <form method="post" name="customerData" action="ccavRequestHandler.php">
-                <table width="50%" height="10" border='1' align="center"><caption><font size="4" color="blue"><b>Integration Kit</b></font></caption></table>
-                    <table width="50%" height="50" border='1' align="center">
-                        <tr>
-                            <td><b>Order Id    :</b></td><td><input type="text" name="order_id" value="123654789"/></td>
-                        </tr>
-                        <tr>
-                            <td><b>Amount  :</b></td><td><input type="text" name="amount" value="1.00"/></td>
-                        </tr>
-                        <tr>
-                            <td><b>Currency    :</b></td><td><input type="text" name="currency" value="INR"/></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2"><b><center>Billing information(optional):</b></center></td>
-                        </tr>
-                        <tr>
-                            <td><b>Billing Name    :</b></td><td><input type="text" name="billing_name" value="Charli"/></td>
-                        </tr>
-                        <tr>
-                            <td><b>Billing Address :</b></td><td><input type="text" name="billing_address" value="Room no 1101, near Railway station Ambad"/></td>
-                        </tr>
-                        <tr>
-                            <td><b>Billing City    :</b></td><td><input type="text" name="billing_city" value="Indore"/></td>
-                        </tr>
-                        <tr>
-                            <td><b>Billing State   :</b></td><td><input type="text" name="billing_state" value="MP"/></td>
-                        </tr>
-                        <tr>
-                            <td><b>Billing Zip :</b></td><td><input type="text" name="billing_zip" value="425001"/></td>
-                        </tr>
-                        <tr>
-                            <td><b>Billing Country :</b></td><td><input type="text" name="billing_country" value="India"/></td>
-                        </tr>
-                        <tr>
-                            <td><b>Billing Tel :</b></td><td><input type="text" name="billing_tel" value="9876543210"/></td>
-                        </tr>
-                        <tr>
-                            <td><b>Billing Email   :</b></td><td><input type="text" name="billing_email" value="test@test.com"/></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2"><b><center>Shipping information(optional)</b></center></td>
-                        </tr>
-                        <tr>
-                            <td><b>Shipping Name   :</b></td><td><input type="text" name="delivery_name" value="Chaplin"/></td>
-                        </tr>
-                        <tr>
-                            <td><b>Shipping Address    :</b></td><td><input type="text" name="delivery_address" value="room no.701 near bus stand"/></td>
-                        </tr>
-                        <tr>
-                            <td><b>shipping City   :</b></td><td><input type="text" name="delivery_city" value="Hyderabad"/></td>
-                        </tr>
-                        <tr>
-                            <td><b>shipping State  :</b></td><td><input type="text" name="delivery_state" value="Andhra"/></td>
-                        </tr>
-                        <tr>
-                            <td><b>shipping Zip    :</b></td><td><input type="text" name="delivery_zip" value="425001"/></td>
-                        </tr>
-                        <tr>
-                            <td><b>shipping Country    :</b></td><td><input type="text" name="delivery_country" value="India"/></td>
-                        </tr>
-                        <tr>
-                            <td><b>Shipping Tel    :</b></td><td><input type="text" name="delivery_tel" value="9876543210"/></td>
-                        </tr>
-                      
-                    </table>
-                  </form>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <!-- Main content -->
+          <div class="invoice p-3 mb-3">
+            <!-- title row -->
+            <div class="row">
+              <div class="col-12">
+                <h4>
+                    <img src="/img/logo_new.png" alt=""  width="50px"   >
+                    Admin, My Soul Mate
+                  <small class="float-right"><b>Date:</b> <%= new Date().toLocaleString();%></small>
+                </h4>
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- info row -->
+            <div class="row invoice-info">
+              <!-- /.col -->
+              <div class="col-sm-4 invoice-col">
+                <address>
+                    <strong><%= invoice.length > 0 ?  invoice[0].billing_name : '' %>,</strong>
+                    <%= invoice.length > 0 ?  invoice[0].billing_address : '' %>,<br>
+                    <%= invoice.length > 0 ?  invoice[0].billing_city : '' %>- <%= invoice.length > 0 ?  invoice[0].billing_zip : '' %>,<br>
+                    <%= invoice.length > 0 ?  invoice[0].billing_country : '' %>, <%= invoice.length > 0 ?  invoice[0].billing_state : '' %>,<br>
+                     Phone: &nbsp;<%= invoice.length > 0 ?  invoice[0].billing_tel : '' %>,<br>
+                     Email: &nbsp;<%= invoice.length > 0 ?  invoice[0].billing_email : '' %>
+                </address>
+              </div>
+              <!-- /.col -->
+              <div class="col-sm-4 invoice-col" style="margin-left: 18vw;">
+                <b>Invoice No: </b><br>
+                <b>Order Date:</b><br>
+                <b>Order ID: </b>&nbsp;<%= invoice.length > 0 ?  invoice[0].order_id : '' %><br>
+                <b>Payment Mode: </b>&nbsp;<%= invoice.length > 0 ?  invoice[0].payment_mode : '' %><br>
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <!-- Table row -->
+            <div class="row">
+              <div class="col-12 table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                  <tr>
+                    <th>Qty</th>
+                    <th>Product</th>
+                    <th>Tennure(In Month)</th>
+                    <th>Description</th>
+                    <th>Total</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>₹</td>
+                  </tr>
+                  <tr>
+                    <td><b>Total QTY: &nbsp; 1</b></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><b>Total Price: &nbsp; ₹<%= invoice.length > 0 ?  invoice[0].amount : '' %>.00</b><br>
+                        All values are in <%= invoice.length > 0 ?  invoice[0].currency : '' %></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="row no-print">
+              <div class="col-12">
+                <a href="invoice-print.html" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
+                <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit
+                  Payment
+                </button>
+                <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
+                  <i class="fas fa-download"></i> Generate PDF
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <!-- /.col-->
-    </div>
-    <!-- ./row -->
-    
-    <!-- ./row -->
+          <!-- /.invoice -->
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
   </section>

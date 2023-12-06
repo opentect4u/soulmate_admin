@@ -10,6 +10,7 @@ const { add_typeRouter } = require("./routes/add_typeRouter");
 const { add_dtlsRouter } = require("./routes/Add_dtlsRouter");
 const { add_amountRouter } = require("./routes/Add_amountRouter");
 const { EmailRouter } = require("./routes/EmailRouter");
+const { InvoiceRouter } = require("./routes/InvoiceRouter");
 app = express();
 expressLayouts = require("express-ejs-layouts"),
   path = require("path"),
@@ -79,7 +80,7 @@ app.use("/payment", add_typeRouter);
 app.use("/payment", add_dtlsRouter);
 app.use("/payment", add_amountRouter);
 app.use("/email", EmailRouter);
-
+app.use("/invoice", InvoiceRouter);
 app.listen(port, (err) => {
   if (err) throw new Error(err);
   else console.log(`App is running at http://localhost:${port}`);
