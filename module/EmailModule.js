@@ -6,7 +6,7 @@ const getUser = () => {
     return new Promise(async (resolve, reject) => {
         var select = "id,email_id,u_name,profile_id",
         table_name = "td_user_profile",
-        whr = `id=1`,
+        whr = null,
         order = null;
         var res_dt = await db_Select(select,table_name,whr,order);
         resolve(res_dt);
@@ -30,8 +30,8 @@ const SendUserEmail = (emailId,profilelId,userName, note) => {
         });
         const mailOptions = {
             from: 'info@mysoulmate.co.in',
-            // to: `${emailId}`,
-            to: `sayantika@synergicsoftek.in`,
+            to: `${emailId}`,
+            // to: `sayantika@synergicsoftek.in`,
             subject: 'Important Email',
             html: `<!DOCTYPE html>
             <head>
