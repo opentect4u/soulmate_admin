@@ -189,4 +189,5 @@ const getProfileVerify = (data) => {
 
 
 
+
 module.exports = { getUserList, user_groom_loc, user_basic_info, user_hobbies, userProfile, user_multiImg, user_Doc, user_Doc_File, getActive, getProfileVerify,getList };

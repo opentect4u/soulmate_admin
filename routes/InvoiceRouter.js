@@ -1,19 +1,15 @@
-const { invoice_description } = require('../module/InvoiceModule');
+const { invoice_description, amount } = require('../module/InvoiceModule');
 
 const express = require('express'),
-InvoiceRouter = express.Router();
+invoiceRouter = express.Router();
 dateFormat = require("dateformat");
 
-// InvoiceRouter.get("/invoice_download", async (req, res) => {
-//     res.render("invoice/invoice");
-// })
+invoiceRouter.get("/invoice_download", async (req, res) => {
+    var data = req.query;
+    var invoice_history = await invoice_description(data.order_id);
+    res.render("invoice/invoice_details", {
+        data1: invoice_history.suc > 0 ? invoice_history.msg : [],
+    });
+});
 
-InvoiceRouter.get("/invoice_details", async (req, res) => {
-    var invoice_history = await invoice_description();
-    var data = {
-        invoice: invoice_history.suc > 0 ? invoice_history.msg : [],
-    };
-res.render("user/invoice_download",data);
-})
-
-module.exports= { InvoiceRouter };
+module.exports = {invoiceRouter}
