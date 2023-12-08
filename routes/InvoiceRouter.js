@@ -12,4 +12,34 @@ invoiceRouter.get("/invoice_download", async (req, res) => {
     });
 });
 
+
+invoiceRouter.post('/download_pdf', async (req, res) => {
+    var data = req.body
+    const browser = await puppeteer.launch({
+        headless: 'new'
+    });
+    
+    // Open a new page
+    const page = await browser.newPage();
+
+    // Set the content of the page with your HTML
+    const htmlContent = data.pdfDiv;
+
+    await page.setContent(htmlContent);
+
+    // Generate a PDF file
+    const pdfBuffer = await page.pdf({format: 'A4' });
+    // var pdfBlob = new Blob([pdfBuffer])
+
+    // Close the browser
+    await browser.close();
+
+    // console.log(pdfBlob);
+
+    // Send the PDF as a download
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', 'attachment; filename=output.pdf');
+    res.send(pdfBuffer);
+})
+
 module.exports = {invoiceRouter}
