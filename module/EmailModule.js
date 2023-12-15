@@ -31,7 +31,7 @@ const SendUserEmail = (emailId,profilelId,userName, note) => {
         const mailOptions = {
             from: 'info@mysoulmate.co.in',
             to: `${emailId}`,
-            // to: `sayantika@synergicsoftek.in`,
+            // to: `subham@synergicsoftek.in,suvrajit@synergicsoftek.com`,
             subject: 'Important Email',
             html: `<!DOCTYPE html>
             <head>
