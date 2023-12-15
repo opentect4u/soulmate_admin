@@ -12,6 +12,7 @@ const {
   getProfileVerify,
   getPayflag,
   getList,
+  PaymentHistory,
 } = require("../module/UserModule");
 const {
   field_height,
@@ -162,6 +163,11 @@ userRouter.post("/update_active_flag", async (req, res) => {
   }
   res.send(res_dt)
 });
+
+userRouter.get('/payment_history', async (req, res) => {
+  var res_dt = await PaymentHistory();
+  res.render("user/pay_history", {data: res_dt});
+})
 
 
 module.exports = { userRouter };

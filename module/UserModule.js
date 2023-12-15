@@ -186,8 +186,17 @@ const getProfileVerify = (data) => {
   })
 };
 
+const PaymentHistory = () => {
+  return new Promise(async (resolve, reject) => {
+    var select = 'a.id, a.user_id, b.u_name, b.phone_no, b.profile_id, a.order_id, a.tnx_date, c.pay_name, a.plan_id, a.active_dt, a.expire_dt, a.amount, d.tennure_period',
+        table_name = 'td_user_payment a, td_user_profile b, md_subscription c, md_subscription_pay_dtls d',
+        whr = `a.user_id=b.id AND a.plan_id=c.id AND a.plan_id=d.sub_id`,
+        order = null;
+    var res_dt = await db_Select(select, table_name, whr, order)
+    resolve(res_dt)
+  })
+}
 
 
 
-
-module.exports = { getUserList, user_groom_loc, user_basic_info, user_hobbies, userProfile, user_multiImg, user_Doc, user_Doc_File, getActive, getProfileVerify,getList };
+module.exports = { getUserList, user_groom_loc, user_basic_info, user_hobbies, userProfile, user_multiImg, user_Doc, user_Doc_File, getActive, getProfileVerify,getList, PaymentHistory };
