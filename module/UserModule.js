@@ -24,6 +24,42 @@ const getList = (id) => {
   })
 };
 
+const getActive = (data) => {
+  return new Promise(async (resolve, reject) => {
+  datetime = dateFormat(new Date(), "yyyy-mm-dd HH:MM:ss");
+    var table_name = 'td_user_profile',
+    fields = `active_flag = "${data.flag}", modified_by = 'admin', modified_dt = "${datetime}"`,
+    values = null,
+    whr = `id= ${data.id}`
+    flag = 1;
+    var res_dt = db_Insert(table_name, fields, values, whr, flag);
+   resolve(res_dt);
+  })
+};
+
+// const getActive = (data) => {
+//   return new Promise(async (resolve, reject) => {
+//   datetime = dateFormat(new Date(), "yyyy-mm-dd HH:MM:ss");
+//   var select = "id,profile_id,u_name,phone_no,email_id,created_dt",
+//   table_name = "td_user_profile",
+//   whr = data.id > 0 ? `id=${data.id}` : null,
+//   order = null;
+//   var res_dt = await db_Select(select,table_name,whr,order);
+//   if(res_dt.suc > 0){
+//     if(res_dt.msg.length > 0){
+//       var table_name = 'td_user_profile',
+//       fields = `active_flag = '${data.flag}', modified_by = 'admin', modified_dt = "${datetime}"`,
+//       values = null,
+//       whr = `id= ${data.id}`
+//       flag = 1;
+//       var active_dt = db_Insert(table_name, fields, values, whr, flag);
+//      resolve(active_dt);
+//     }
+//   }  
+//   })
+// };
+
+
 const user_groom_loc = (data) => {
   return new Promise(async (resolve, reject) => {
     var select =
@@ -160,18 +196,7 @@ const user_Doc_File = (data) => {
   })
 };
 
-const getActive = (data) => {
-  return new Promise(async (resolve, reject) => {
-  datetime = dateFormat(new Date(), "yyyy-mm-dd HH:MM:ss");
-    var table_name = 'td_user_profile',
-    fields = `active_flag = "${data.flag}", modified_by = 'admin', modified_dt = "${datetime}"`,
-    values = null,
-    whr = `id= ${data.id}`
-    flag = 1;
-    var res_dt = db_Insert(table_name, fields, values, whr, flag);
-   resolve(res_dt);
-  })
-};
+
 
 const getProfileVerify = (data) => {
   return new Promise(async (resolve, reject) => {
