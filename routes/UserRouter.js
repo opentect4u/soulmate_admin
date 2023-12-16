@@ -1,4 +1,11 @@
-const { ActiveProf, DeActiveProf, ActiveKyc, DeActiveKyc, ActiveStatus, DeActiveStatus } = require("../module/SMSModule");
+const {
+  ActiveProf,
+  DeActiveProf,
+  ActiveKyc,
+  DeActiveKyc,
+  ActiveStatus,
+  DeActiveStatus,
+} = require("../module/SMSModule");
 const {
   getUserList,
   user_groom_loc,
@@ -42,18 +49,18 @@ const express = require("express"),
   userRouter = express.Router();
 dateFormat = require("dateformat");
 
-  userRouter.use((req, res, next) => {
-    var user = req.session.user
-if(!user){
-  res.redirect("/login")
-}
-next()
-  })
+userRouter.use((req, res, next) => {
+  var user = req.session.user;
+  if (!user) {
+    res.redirect("/login");
+  }
+  next();
+});
 
-  userRouter.get("/dashboard", function (req, res) {
-    // res.send('Welcome to Admin panel');
-    res.render("dashboard/index");
-  });  
+userRouter.get("/dashboard", function (req, res) {
+  // res.send('Welcome to Admin panel');
+  res.render("dashboard/index");
+});
 
 userRouter.get("/user_list", async (req, res) => {
   var userList = await getUserList();
@@ -69,16 +76,17 @@ userRouter.get("/view_user", async (req, res) => {
   var hobbies = await user_hobbies({ user_id: id });
   var profile_img = await userProfile({ user_id: id });
   var multiple_photo = await user_multiImg({ user_id: id });
-  var doc_type = await user_Doc({id});
+  var doc_type = await user_Doc({ id });
   var doc_file = await user_Doc_File({ user_id: id });
   // console.log(multiple_photo);
   var hobbyList = hobbies_tb_data;
   for (let dt of hobbyList) {
     if (hobbies.msg[dt.input_field].length > 0) {
       hobbies.msg[dt.input_field] = [
-        ...hobbies.msg[dt.input_field].map((hdt) => hdt[dt.field_name])].join(", ");
-    }else{
-      hobbies.msg[dt.input_field] = null
+        ...hobbies.msg[dt.input_field].map((hdt) => hdt[dt.field_name]),
+      ].join(", ");
+    } else {
+      hobbies.msg[dt.input_field] = null;
     }
   }
   // console.log(hobbies);
@@ -89,7 +97,7 @@ userRouter.get("/view_user", async (req, res) => {
     profile_img: profile_img.suc > 0 ? profile_img.msg : [],
     multiple_photo: multiple_photo.suc > 0 ? multiple_photo.msg : [],
     doc_type: doc_type.suc > 0 ? doc_type.msg : [],
-    doc_file: doc_file.suc > 0 ? doc_file.msg :[],
+    doc_file: doc_file.suc > 0 ? doc_file.msg : [],
     ac_for: ac_for,
     gender: field_gender,
     height: field_height,
@@ -115,29 +123,26 @@ userRouter.get("/view_user", async (req, res) => {
   res.render("user/view", data);
   // console.log(data);
   // console.log(multiple_photo);
-
 });
 
-
-userRouter.post('/update_profile_verify', async (req, res) => {
+userRouter.post("/update_profile_verify", async (req, res) => {
   var data = req.body;
   var res_dt = await getProfileVerify(data);
   switch (data.flag) {
-    case 'Y':
-      await ActiveKyc(data.phone, data.pro_id)
+    case "Y":
+      await ActiveKyc(data.phone, data.pro_id);
       break;
-    case 'N':
-      await DeActiveKyc(data.phone, data.pro_id)
+    case "N":
+      await DeActiveKyc(data.phone, data.pro_id);
       break;
-  
+
     default:
       break;
   }
-  res.send(res_dt)
+  res.send(res_dt);
 });
 
-
-userRouter.post('/update_pay_flag', async(req, res) => {
+userRouter.post("/update_pay_flag", async (req, res) => {
   var data = req.body;
   flag = req.body.payflag;
   var res_dt = await getUserList(flag);
@@ -146,28 +151,36 @@ userRouter.post('/update_pay_flag', async(req, res) => {
 
 userRouter.post("/update_active_flag", async (req, res) => {
   var data = req.body;
-  var res_dt = await getList(data.id)
-  switch (data.flag){
-    case 'Y' :
-      await ActiveStatus(res_dt.msg[0].profile_id, res_dt.msg[0].email_id, res_dt.msg[0].u_name)
-      await ActiveProf(res_dt.msg[0].phone_no, res_dt.msg[0].profile_id)
-      break;
-
-      case 'N' :
-        await DeActiveStatus(res_dt.msg[0].profile_id, res_dt.msg[0].email_id, res_dt.msg[0].u_name)
-        await DeActiveProf(res_dt.msg[0].phone_no, res_dt.msg[0].profile_id)
+  var res_dt = await getList(data.id);
+  var active_dt = await getActive(data);
+  if (active_dt.suc > 0) {
+    switch (data.flag) {
+      case "Y":
+        await ActiveStatus(
+          res_dt.msg[0].profile_id,
+          res_dt.msg[0].email_id,
+          res_dt.msg[0].u_name
+        );
+        await ActiveProf(res_dt.msg[0].phone_no, res_dt.msg[0].profile_id);
         break;
-
+      case "N":
+        await DeActiveStatus(
+          res_dt.msg[0].profile_id,
+          res_dt.msg[0].email_id,
+          res_dt.msg[0].u_name
+        );
+        await DeActiveProf(res_dt.msg[0].phone_no, res_dt.msg[0].profile_id);
+        break;
       default:
         break;
+    }
   }
-  res.send(res_dt)
+  res.send(res_dt);
 });
 
-userRouter.get('/payment_history', async (req, res) => {
+userRouter.get("/payment_history", async (req, res) => {
   var res_dt = await PaymentHistory();
-  res.render("user/pay_history", {data: res_dt});
-})
-
+  res.render("user/pay_history", { data: res_dt });
+});
 
 module.exports = { userRouter };
