@@ -207,10 +207,16 @@
                             <span class="pl-2"><%= basic_info.length > 0 ? ( basic_info[0].family_location ? fam_loc[ basic_info[0].family_location] : '') : '' %></span>
                         </p>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <p>
                             <span class="font-weight-bold">About my family:</span>
                             <span class="pl-2"><%= basic_info.length > 0 ?  basic_info[0].about_my_family : '' %></span>
+                        </p>
+                    </div>
+                    <div class="col-md-12">
+                        <p>
+                            <span class="font-weight-bold">About us:</span>
+                            <span class="pl-2"><%= basic_info.length > 0 ?  basic_info[0].about_us : '' %></span>
                         </p>
                     </div>
                 </div>
@@ -259,39 +265,39 @@
                 border: 2px solid #dc3545;
                 padding: 17px;
                 border-radius: 18px;">
+                <div class="col-md-12">
                     <h6 style="background-color: #d81b60; width: 167px; color: white; border: 15px;  padding:5px; border-radius: 8px"><i class="fas fa-heart">&nbsp;Hobbies & Interest</i></h6>
-                    <div class="row">
+                </div>
                     <div class="col-md-6">
                         <p>
                             <span class="font-weight-bold">Hobbies & Interests:</span>
-                            <span class="pl-2"><%= hobbies['field_Hobbies_Interests'] ?  hobbies['field_Hobbies_Interests'] : '' %></span>
+                            <span class="pl-2"><%= hobbies[0].hobbies_interest ?  hobbies[0].hobbies_interest : '' %></span>
                         </p>
                     </div>
                     <div class="col-md-6">
                         <p>
                             <span class="font-weight-bold">Favourite Music(s):</span>
-                            <span class="pl-2"><%= hobbies['field_Music'] ?  hobbies['field_Music'] : '' %></span>
+                            <span class="pl-2"><%= hobbies[0].fav_music ?  hobbies[0].fav_music : '' %></span>
                         </p>
                     </div>
                     <div class="col-md-6">
                         <p>
                             <span class="font-weight-bold">Sports/Fitness Activities:</span>
-                            <span class="pl-2"><%= hobbies['field_Sports'] ?  hobbies['field_Sports'] : '' %></span>
+                            <span class="pl-2"><%= hobbies[0].sports ?  hobbies[0].sports : '' %></span>
                         </p>
                     </div>
                     <div class="col-md-6">
                         <p>
                             <span class="font-weight-bold">Preffered Movie(s):</span>
-                            <span class="pl-2"><%= hobbies['field_Preferred_Movies'] ?  hobbies['field_Preferred_Movies'] : '' %></span>
+                            <span class="pl-2"><%= hobbies[0].movie ?  hobbies[0].movie : '' %></span>
                         </p>
                     </div>
-                    <div class="col-md-6">
+                    <!-- <div class="col-md-6">
                         <p>
                             <span class="font-weight-bold">Spoken Language(s):</span>
-                            <span class="pl-2"><%= hobbies['field_Spoken_Languages'] ?  hobbies['field_Spoken_Languages'] : '' %></span>
+                            <span class="pl-2"><%# hobbies['field_Spoken_Languages'] ?  hobbies['field_Spoken_Languages'] : '' %></span>
                         </p>
-                    </div>
-                </div>
+                    </div> -->
                 </div>
                 <div class="row mt-3" style="background-color: aliceblue;
                 width: 76vw;

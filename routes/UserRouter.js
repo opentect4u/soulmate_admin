@@ -20,6 +20,7 @@ const {
   getPayflag,
   getList,
   PaymentHistory,
+  get_hobby,
 } = require("../module/UserModule");
 const {
   field_height,
@@ -73,22 +74,24 @@ userRouter.get("/view_user", async (req, res) => {
   var id = req.query.id;
   var groomLocation = await user_groom_loc({ user_id: id });
   var userBasicInfo = await user_basic_info({ user_id: id });
-  var hobbies = await user_hobbies({ user_id: id });
+  var hobbies = await get_hobby({ user_id: id });
+  console.log(hobbies);
+  // var hobbies = await user_hobbies({ user_id: id });
   var profile_img = await userProfile({ user_id: id });
   var multiple_photo = await user_multiImg({ user_id: id });
   var doc_type = await user_Doc({ id });
   var doc_file = await user_Doc_File({ user_id: id });
   // console.log(multiple_photo);
-  var hobbyList = hobbies_tb_data;
-  for (let dt of hobbyList) {
-    if (hobbies.msg[dt.input_field].length > 0) {
-      hobbies.msg[dt.input_field] = [
-        ...hobbies.msg[dt.input_field].map((hdt) => hdt[dt.field_name]),
-      ].join(", ");
-    } else {
-      hobbies.msg[dt.input_field] = null;
-    }
-  }
+  // var hobbyList = hobbies_tb_data;
+  // for (let dt of hobbyList) {
+  //   if (hobbies.msg[dt.input_field].length > 0) {
+  //     hobbies.msg[dt.input_field] = [
+  //       ...hobbies.msg[dt.input_field].map((hdt) => hdt[dt.field_name]),
+  //     ].join(", ");
+  //   } else {
+  //     hobbies.msg[dt.input_field] = null;
+  //   }
+  // }
   // console.log(hobbies);
   var data = {
     groom_loc: groomLocation.suc > 0 ? groomLocation.msg : [],
