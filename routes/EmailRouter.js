@@ -4,6 +4,15 @@ const { EncryptDataToSend } = require('../module/MasterModule');
 const express = require('express'),
 EmailRouter = express.Router();
 
+EmailRouter.use((req, res, next) => {
+  var user = req.session.user;
+  if (!user) {
+    res.redirect("/login");
+  } else {
+    next();
+  }
+});
+
 EmailRouter.get("/email", async (req, res) => {
     res.render("email/email_send");
 });

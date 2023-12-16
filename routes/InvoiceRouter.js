@@ -4,6 +4,15 @@ const express = require('express'),
 invoiceRouter = express.Router();
 dateFormat = require("dateformat");
 
+invoiceRouter.use((req, res, next) => {
+  var user = req.session.user;
+  if (!user) {
+    res.redirect("/login");
+  } else {
+    next();
+  }
+});
+
 invoiceRouter.get("/invoice_download", async (req, res) => {
     var data = req.query;
     var invoice_history = await invoice_description(data.order_id);

@@ -4,8 +4,6 @@ const express = require("express");
 AdminRouter = express.Router(), 
 bcrypt = require("bcrypt");
 
-
-
 AdminRouter.post("/admin_login", async (req, res) => {
   var data = req.body,
     result;

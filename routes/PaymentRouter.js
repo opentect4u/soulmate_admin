@@ -2,6 +2,15 @@ const { getTypeList, getDetailsList, getAmountList } = require('../module/Paymen
 const express = require('express');
 paymentRouter = express.Router();
 
+paymentRouter.use((req, res, next) => {
+  var user = req.session.user;
+  if (!user) {
+    res.redirect("/login");
+  } else {
+    next();
+  }
+});
+
 paymentRouter.get("/subscription_type", async(req, res) => {
   var type_data = await getTypeList();
   // console.log('gfdgf', type_data);

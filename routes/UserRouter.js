@@ -54,8 +54,9 @@ userRouter.use((req, res, next) => {
   var user = req.session.user;
   if (!user) {
     res.redirect("/login");
+  } else {
+    next();
   }
-  next();
 });
 
 userRouter.get("/dashboard", function (req, res) {

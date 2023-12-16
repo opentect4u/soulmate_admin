@@ -5,6 +5,14 @@ const { getTypeList } = require('../module/PaymentModule');
 add_typeRouter = express.Router();
 dateFormat = require("dateformat");
 
+add_typeRouter.use((req, res, next) => {
+    var user = req.session.user;
+    if (!user) {
+      res.redirect("/login");
+    } else {
+      next();
+    }
+  });
 
 add_typeRouter.get("/add_type", async(req, res) => {
     id = req.query.id;
