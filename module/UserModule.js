@@ -30,12 +30,37 @@ const getActive = (data) => {
     var table_name = 'td_user_profile',
     fields = `active_flag = "${data.flag}", modified_by = 'admin', modified_dt = "${datetime}"`,
     values = null,
-    whr = `id= ${data.id}`
+    whr = `id= ${data.id}`,
     flag = 1;
     var res_dt = db_Insert(table_name, fields, values, whr, flag);
    resolve(res_dt);
   })
 };
+
+ const getDeletedata = (data) => {
+  return new Promise(async (resolve, reject) => {
+    datetime = dateFormat(new Date(), "yyyy-mm-dd HH:MM:ss");
+    var select = "id,profile_id,u_name,phone_no,email_id,country_id,state_id,city_id,location_id,latt_long,dob,ac_for,mother_tong,about_us,religion,gender,caste_id,oth_comm_marry_flag,phone_approved_flag,email_approved_flag,pay_flag,plan_id,plan_act_dt,plan_exp_dt,kundali_file_name,rasi_id,nakhatra_id,jotok_rasi_id,file_path,profile_verify_flag,kyc_type,active_flag,disclaimer,policy,created_by,created_dt,modified_by,modified_dt",
+    table_name = 'td_user_profile',
+    whr = `id = ${data.id}`,
+    order = null;
+    var res_dt = await db_Select(select,table_name,whr,order);
+    // console.log(res_dt);
+    if(res_dt.suc > 0){
+      if(res_dt.msg.length > 0){
+        var table_name = 'td_user_profile_del',
+        fields = `(id,profile_id,u_name,phone_no,email_id,country_id,state_id,city_id,location_id,latt_long,dob,ac_for,mother_tong,about_us,religion,gender,caste_id,oth_comm_marry_flag,phone_approved_flag,email_approved_flag,pay_flag,plan_id,plan_act_dt,plan_exp_dt,kundali_file_name,rasi_id,nakhatra_id,jotok_rasi_id,file_path,profile_verify_flag,kyc_type,active_flag,disclaimer,policy,created_by,created_dt,modified_by,modified_dt,delete_reason,remarks,deleted_by,deleted_dt)`,
+        values = `('${data.id}','${data.profile_id}', '${data.u_name}','${data.phone_no}','${data.email_id}', '${data.country_id}','${data.state_id}','${data.city_id}','${data.location_id}','${data.latt_long}','${data.dob}','${data.ac_for}', '${data.mother_tong}','${data.about_us}', '${data.religion}', '${data.gender}', '${data.caste_id}', '${data.oth_comm_marry_flag}', '${data.phone_approved_flag}', '${data.email_approved_flag}', '${data.pay_flag}', '${data.plan_id}', '${datetime}', '${datetime}', '${data.kundali_file_name}', '${data.rasi_id}', '${data.nakhatra_id}', '${data.jotok_rasi_id}',
+        '${data.file_path}', '${data.profile_verify_flag}', '${data.kyc_type}', '${data.active_flag}', '${data.disclaimer}', '${data.policy}', '${data.created_by}', '${datetime}', '${data.modified_by}', '${datetime}', '${data.delete_reason}', '${data.remarks}', 'admin', '${datetime}')`,
+        whr = null,
+        flag = 0;
+        var del_dt = await db_Insert(table_name, fields, values, whr, flag);
+        resolve(del_dt);
+      }
+    }
+   
+  })
+ };
 
 // const getActive = (data) => {
 //   return new Promise(async (resolve, reject) => {
@@ -235,4 +260,4 @@ const PaymentHistory = () => {
 
 
 
-module.exports = { getUserList, user_groom_loc, user_basic_info, user_hobbies, userProfile, user_multiImg, user_Doc, user_Doc_File, getActive, getProfileVerify,getList, PaymentHistory, get_hobby };
+module.exports = { getUserList, user_groom_loc, user_basic_info, user_hobbies, userProfile, user_multiImg, user_Doc, user_Doc_File, getActive, getProfileVerify,getList, PaymentHistory, get_hobby, getDeletedata };

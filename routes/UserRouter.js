@@ -21,6 +21,7 @@ const {
   getList,
   PaymentHistory,
   get_hobby,
+  getDeletedata,
 } = require("../module/UserModule");
 const {
   field_height,
@@ -186,5 +187,12 @@ userRouter.get("/payment_history", async (req, res) => {
   var res_dt = await PaymentHistory();
   res.render("user/pay_history", { data: res_dt });
 });
+
+userRouter.post("/delete", async (req, res) => {
+  var data = req.body
+  // console.log(data);
+  var res_dt = await getDeletedata(data);
+  res.send(res_dt);
+})
 
 module.exports = { userRouter };
