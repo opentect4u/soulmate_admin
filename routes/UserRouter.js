@@ -189,10 +189,10 @@ userRouter.get("/payment_history", async (req, res) => {
 });
 
 userRouter.post("/delete", async (req, res) => {
-  var data = req.body
+  var data = req.body;
   // console.log(data);
   var res_dt = await getDeletedata(data);
   res.send(res_dt);
-})
+});
 
 module.exports = { userRouter };

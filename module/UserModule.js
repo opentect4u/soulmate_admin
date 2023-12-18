@@ -1,12 +1,11 @@
 const { db_Select, db_Insert } = require("./MasterModule");
 
-
-const getUserList = (flag= 'A') => {
+const getUserList = (flag = "A") => {
   return new Promise(async (resolve, reject) => {
     var select =
         "id,profile_id,u_name,phone_no,email_id,file_path,pay_flag,active_flag,plan_id,created_dt",
       table_name = "td_user_profile",
-      whr = flag!= 'A' ? `pay_flag='${flag}'` : null,
+      whr = flag != "A" ? `pay_flag='${flag}'` : null,
       order = null;
     var res_dt = db_Select(select, table_name, whr, order);
     resolve(res_dt);
@@ -16,51 +15,50 @@ const getUserList = (flag= 'A') => {
 const getList = (id) => {
   return new Promise(async (resolve, reject) => {
     var select = "id,profile_id,u_name,phone_no,email_id,created_dt",
-    table_name = "td_user_profile",
-    whr = id > 0 ? `id=${id}` : null,
-    order = null;
-    var res_dt = await db_Select(select,table_name,whr,order);
+      table_name = "td_user_profile",
+      whr = id > 0 ? `id=${id}` : null,
+      order = null;
+    var res_dt = await db_Select(select, table_name, whr, order);
     resolve(res_dt);
-  })
+  });
 };
 
 const getActive = (data) => {
   return new Promise(async (resolve, reject) => {
-  datetime = dateFormat(new Date(), "yyyy-mm-dd HH:MM:ss");
-    var table_name = 'td_user_profile',
-    fields = `active_flag = "${data.flag}", modified_by = 'admin', modified_dt = "${datetime}"`,
-    values = null,
-    whr = `id= ${data.id}`,
-    flag = 1;
+    datetime = dateFormat(new Date(), "yyyy-mm-dd HH:MM:ss");
+    var table_name = "td_user_profile",
+      fields = `active_flag = "${data.flag}", modified_by = 'admin', modified_dt = "${datetime}"`,
+      values = null,
+      whr = `id= ${data.id}`,
+      flag = 1;
     var res_dt = db_Insert(table_name, fields, values, whr, flag);
-   resolve(res_dt);
-  })
+    resolve(res_dt);
+  });
 };
 
- const getDeletedata = (data) => {
+const getDeletedata = (data) => {
   return new Promise(async (resolve, reject) => {
     datetime = dateFormat(new Date(), "yyyy-mm-dd HH:MM:ss");
-    var select = "id,profile_id,u_name,phone_no,email_id,country_id,state_id,city_id,location_id,latt_long,dob,ac_for,mother_tong,about_us,religion,gender,caste_id,oth_comm_marry_flag,phone_approved_flag,email_approved_flag,pay_flag,plan_id,plan_act_dt,plan_exp_dt,kundali_file_name,rasi_id,nakhatra_id,jotok_rasi_id,file_path,profile_verify_flag,kyc_type,active_flag,disclaimer,policy,created_by,created_dt,modified_by,modified_dt",
-    table_name = 'td_user_profile',
-    whr = `id = ${data.id}`,
-    order = null;
-    var res_dt = await db_Select(select,table_name,whr,order);
+    var select =
+        "id,profile_id,u_name,phone_no,email_id,country_id,state_id,city_id,location_id,latt_long,dob,ac_for,mother_tong,about_us,religion,gender,caste_id,oth_comm_marry_flag,phone_approved_flag,email_approved_flag,pay_flag,plan_id,plan_act_dt,plan_exp_dt,kundali_file_name,rasi_id,nakhatra_id,jotok_rasi_id,file_path,profile_verify_flag,kyc_type,active_flag,disclaimer,policy,created_by,created_dt,modified_by,modified_dt",
+      table_name = "td_user_profile",
+      whr = `id = ${data.id}`,
+      order = null;
+    var res_dt = await db_Select(select, table_name, whr, order);
     // console.log(res_dt);
-    if(res_dt.suc > 0){
-      if(res_dt.msg.length > 0){
-        var table_name = 'td_user_profile_del',
+    if (res_dt.suc > 0) {
+      var table_name = "td_user_profile_del",
         fields = `(id,profile_id,u_name,phone_no,email_id,country_id,state_id,city_id,location_id,latt_long,dob,ac_for,mother_tong,about_us,religion,gender,caste_id,oth_comm_marry_flag,phone_approved_flag,email_approved_flag,pay_flag,plan_id,plan_act_dt,plan_exp_dt,kundali_file_name,rasi_id,nakhatra_id,jotok_rasi_id,file_path,profile_verify_flag,kyc_type,active_flag,disclaimer,policy,created_by,created_dt,modified_by,modified_dt,delete_reason,remarks,deleted_by,deleted_dt)`,
-        values = `('${data.id}','${data.profile_id}', '${data.u_name}','${data.phone_no}','${data.email_id}', '${data.country_id}','${data.state_id}','${data.city_id}','${data.location_id}','${data.latt_long}','${data.dob}','${data.ac_for}', '${data.mother_tong}','${data.about_us}', '${data.religion}', '${data.gender}', '${data.caste_id}', '${data.oth_comm_marry_flag}', '${data.phone_approved_flag}', '${data.email_approved_flag}', '${data.pay_flag}', '${data.plan_id}', '${datetime}', '${datetime}', '${data.kundali_file_name}', '${data.rasi_id}', '${data.nakhatra_id}', '${data.jotok_rasi_id}',
-        '${data.file_path}', '${data.profile_verify_flag}', '${data.kyc_type}', '${data.active_flag}', '${data.disclaimer}', '${data.policy}', '${data.created_by}', '${datetime}', '${data.modified_by}', '${datetime}', '${data.delete_reason}', '${data.remarks}', 'admin', '${datetime}')`,
+        values = `('${res_dt.msg[0].id}','${res_dt.msg[0].profile_id}', '${res_dt.msg[0].u_name}','${res_dt.msg[0].phone_no}','${res_dt.msg[0].email_id}', '${res_dt.msg[0].country_id}','${res_dt.msg[0].state_id}','${res_dt.msg[0].city_id}','${res_dt.msg[0].location_id}','${res_dt.msg[0].latt_long}','${res_dt.msg[0].dob}','${res_dt.msg[0].ac_for}', '${res_dt.msg[0].mother_tong}','${res_dt.msg[0].about_us}', '${res_dt.msg[0].religion}', '${res_dt.msg[0].gender}', '${res_dt.msg[0].caste_id}', '${res_dt.msg[0].oth_comm_marry_flag}', '${res_dt.msg[0].phone_approved_flag}', '${res_dt.msg[0].email_approved_flag}', '${res_dt.msg[0].pay_flag}', '${res_dt.msg[0].plan_id}', '${res_dt.msg[0].plan_act_dt}', '${res_dt.msg[0].plan_exp_dt}', '${res_dt.msg[0].kundali_file_name}', '${res_dt.msg[0].rasi_id}', '${res_dt.msg[0].nakhatra_id}', '${res_dt.msg[0].jotok_rasi_id}',
+        '${res_dt.msg[0].file_path}', '${res_dt.msg[0].profile_verify_flag}', '${res_dt.msg[0].kyc_type}', '${res_dt.msg[0].active_flag}', '${res_dt.msg[0].disclaimer}', '${res_dt.msg[0].policy}', '${res_dt.msg[0].u_name}', '${datetime}', '${res_dt.msg[0].modified_by}', '${datetime}', '${data.resn_id}', '${data.remarks}', 'admin', '${datetime}')`,
         whr = null,
         flag = 0;
-        var del_dt = await db_Insert(table_name, fields, values, whr, flag);
-        resolve(del_dt);
-      }
+      var del_dt = await db_Insert(table_name, fields, values, whr, flag);
+      // console.log(del_dt);
+      resolve(del_dt);
     }
-   
-  })
- };
+  });
+};
 
 // const getActive = (data) => {
 //   return new Promise(async (resolve, reject) => {
@@ -69,7 +67,7 @@ const getActive = (data) => {
 //   table_name = "td_user_profile",
 //   whr = data.id > 0 ? `id=${data.id}` : null,
 //   order = null;
-//   var res_dt = await db_Select(select,table_name,whr,order);
+//   var res_dt= await db_Select(select,table_name,whr,order);
 //   if(res_dt.suc > 0){
 //     if(res_dt.msg.length > 0){
 //       var table_name = 'td_user_profile',
@@ -80,10 +78,9 @@ const getActive = (data) => {
 //       var active_dt = db_Insert(table_name, fields, values, whr, flag);
 //      resolve(active_dt);
 //     }
-//   }  
+//   }
 //   })
 // };
-
 
 const user_groom_loc = (data) => {
   return new Promise(async (resolve, reject) => {
@@ -126,15 +123,15 @@ const user_basic_info = (data, dashboard_flag = false) => {
 };
 
 const get_hobby = (data) => {
-    return new Promise (async (resolve, reject) => {
-     var select = "id,user_id,hobbies_interest,sports,fav_music,movie",
-     table_name= "td_user_hobbies",
-     whr = data.user_id > 0 ? `user_id=${data.user_id}` : null,
-     order = null;
-     var res_dt = await db_Select(select,table_name,whr,order);
-     resolve(res_dt);
-    })
- };
+  return new Promise(async (resolve, reject) => {
+    var select = "id,user_id,hobbies_interest,sports,fav_music,movie",
+      table_name = "td_user_hobbies",
+      whr = data.user_id > 0 ? `user_id=${data.user_id}` : null,
+      order = null;
+    var res_dt = await db_Select(select, table_name, whr, order);
+    resolve(res_dt);
+  });
+};
 
 const user_hobbies = (data) => {
   return new Promise(async (resolve, reject) => {
@@ -194,70 +191,83 @@ const userProfile = (data) => {
       whr = data.user_id > 0 ? `id = ${data.user_id}` : null,
       order = null;
     var res_dt = await db_Select(select, table_name, whr, order);
-    resolve(res_dt)
-  })
+    resolve(res_dt);
+  });
 };
 
 const user_multiImg = (data) => {
   return new Promise(async (resolve, reject) => {
-    var select = "id, file_path", 
-    table_name = "td_user_profile_image",
-    whr = data.user_id > 0 ? `user_id = ${data.user_id}` : null,
-    order = null;
+    var select = "id, file_path",
+      table_name = "td_user_profile_image",
+      whr = data.user_id > 0 ? `user_id = ${data.user_id}` : null,
+      order = null;
     var res_dt = await db_Select(select, table_name, whr, order);
     // console.log(res_dt);
-    resolve(res_dt)
-  })
+    resolve(res_dt);
+  });
 };
 
 const user_Doc = (data) => {
   return new Promise(async (resolve, reject) => {
-    var select = 'id, doc_type', 
-    table_name = 'md_document',
-    whr = data.id > 0 ? `id = ${data.id}` : null,
-    order = null;
+    var select = "id, doc_type",
+      table_name = "md_document",
+      whr = data.id > 0 ? `id = ${data.id}` : null,
+      order = null;
     var res_dt = await db_Select(select, table_name, whr, order);
-    resolve(res_dt)
-  })
+    resolve(res_dt);
+  });
 };
 
 const user_Doc_File = (data) => {
   return new Promise(async (resolve, reject) => {
-                var select = 'id,file_path',
-                        table_name = 'td_user_kyc_list',
-                        whr = `user_id = ${data.user_id}`,
-                        order = null;
-                    var kyc_dt = await db_Select(select, table_name, whr, order)
-                    resolve(kyc_dt)
-  })
+    var select = "id,file_path",
+      table_name = "td_user_kyc_list",
+      whr = `user_id = ${data.user_id}`,
+      order = null;
+    var kyc_dt = await db_Select(select, table_name, whr, order);
+    resolve(kyc_dt);
+  });
 };
-
-
 
 const getProfileVerify = (data) => {
   return new Promise(async (resolve, reject) => {
-  datetime = dateFormat(new Date(), "yyyy-mm-dd HH:MM:ss");
-    var table_name = 'td_user_profile',
-    fields = `profile_verify_flag = "${data.flag}", modified_by = 'admin', modified_dt = "${datetime}"`,
-    values = null,
-    whr = `id =${data.id}`,
-    flag = 1;
+    datetime = dateFormat(new Date(), "yyyy-mm-dd HH:MM:ss");
+    var table_name = "td_user_profile",
+      fields = `profile_verify_flag = "${data.flag}", modified_by = 'admin', modified_dt = "${datetime}"`,
+      values = null,
+      whr = `id =${data.id}`,
+      flag = 1;
     var res_dt = db_Insert(table_name, fields, values, whr, flag);
     resolve(res_dt);
-  })
+  });
 };
 
 const PaymentHistory = () => {
   return new Promise(async (resolve, reject) => {
-    var select = 'a.id, a.user_id, b.u_name, b.phone_no, b.profile_id, a.order_id, a.tnx_date, c.pay_name, a.plan_id, a.active_dt, a.expire_dt, a.amount, d.tennure_period',
-        table_name = 'td_user_payment a, td_user_profile b, md_subscription c, md_subscription_pay_dtls d',
-        whr = `a.user_id=b.id AND a.plan_id=c.id AND a.plan_id=d.sub_id`,
-        order = null;
-    var res_dt = await db_Select(select, table_name, whr, order)
-    resolve(res_dt)
-  })
-}
+    var select =
+        "a.id, a.user_id, b.u_name, b.phone_no, b.profile_id, a.order_id, a.tnx_date, c.pay_name, a.plan_id, a.active_dt, a.expire_dt, a.amount, d.tennure_period",
+      table_name =
+        "td_user_payment a, td_user_profile b, md_subscription c, md_subscription_pay_dtls d",
+      whr = `a.user_id=b.id AND a.plan_id=c.id AND a.plan_id=d.sub_id`,
+      order = null;
+    var res_dt = await db_Select(select, table_name, whr, order);
+    resolve(res_dt);
+  });
+};
 
-
-
-module.exports = { getUserList, user_groom_loc, user_basic_info, user_hobbies, userProfile, user_multiImg, user_Doc, user_Doc_File, getActive, getProfileVerify,getList, PaymentHistory, get_hobby, getDeletedata };
+module.exports = {
+  getUserList,
+  user_groom_loc,
+  user_basic_info,
+  user_hobbies,
+  userProfile,
+  user_multiImg,
+  user_Doc,
+  user_Doc_File,
+  getActive,
+  getProfileVerify,
+  getList,
+  PaymentHistory,
+  get_hobby,
+  getDeletedata,
+};
