@@ -27,7 +27,7 @@ const getActive = (data) => {
   return new Promise(async (resolve, reject) => {
     datetime = dateFormat(new Date(), "yyyy-mm-dd HH:MM:ss");
     var table_name = "td_user_profile",
-      fields = `active_flag = "${data.flag}", modified_by = 'admin', modified_dt = "${datetime}"`,
+      fields = `active_flag = "${data.flag}", view_flag = "${data.flag}", modified_by = 'admin', modified_dt = "${datetime}"`,
       values = null,
       whr = `id= ${data.id}`,
       flag = 1;
