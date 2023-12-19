@@ -22,6 +22,7 @@ const {
   PaymentHistory,
   get_hobby,
   getDeletedata,
+  editData,
 } = require("../module/UserModule");
 const {
   field_height,
@@ -72,6 +73,17 @@ userRouter.get("/user_list", async (req, res) => {
   });
 });
 
+userRouter.get("/edit_user", async (req, res) => {
+  var edit_userList = await editData();
+  res.render("user/edit_user_datatable", {
+    data: edit_userList.suc > 0 ? edit_userList.msg : [],
+  });
+});
+
+// userRouter.get("/edit_user", async (req, res) => {
+//   res.render("user/edit");
+// })
+
 userRouter.get("/view_user", async (req, res) => {
   var id = req.query.id;
   var groomLocation = await user_groom_loc({ user_id: id });
@@ -83,18 +95,6 @@ userRouter.get("/view_user", async (req, res) => {
   var multiple_photo = await user_multiImg({ user_id: id });
   var doc_type = await user_Doc({ id });
   var doc_file = await user_Doc_File({ user_id: id });
-  // console.log(multiple_photo);
-  // var hobbyList = hobbies_tb_data;
-  // for (let dt of hobbyList) {
-  //   if (hobbies.msg[dt.input_field].length > 0) {
-  //     hobbies.msg[dt.input_field] = [
-  //       ...hobbies.msg[dt.input_field].map((hdt) => hdt[dt.field_name]),
-  //     ].join(", ");
-  //   } else {
-  //     hobbies.msg[dt.input_field] = null;
-  //   }
-  // }
-  // console.log(hobbies);
   var data = {
     groom_loc: groomLocation.suc > 0 ? groomLocation.msg : [],
     basic_info: userBasicInfo.suc > 0 ? userBasicInfo.msg : [],
@@ -126,8 +126,51 @@ userRouter.get("/view_user", async (req, res) => {
     id,
   };
   res.render("user/view", data);
-  // console.log(data);
-  // console.log(multiple_photo);
+});
+
+
+userRouter.get("/edit_user_list", async (req, res) => {
+  var id = req.query.id;
+  var groomLocation = await user_groom_loc({ user_id: id });
+  var userBasicInfo = await user_basic_info({ user_id: id });
+  var hobbies = await get_hobby({ user_id: id });
+  // console.log(hobbies);
+  // var hobbies = await user_hobbies({ user_id: id });
+  var profile_img = await userProfile({ user_id: id });
+  var multiple_photo = await user_multiImg({ user_id: id });
+  var doc_type = await user_Doc({ id });
+  var doc_file = await user_Doc_File({ user_id: id });
+  var data = {
+    groom_loc: groomLocation.suc > 0 ? groomLocation.msg : [],
+    basic_info: userBasicInfo.suc > 0 ? userBasicInfo.msg : [],
+    hobbies: hobbies.suc > 0 ? hobbies.msg : [],
+    profile_img: profile_img.suc > 0 ? profile_img.msg : [],
+    multiple_photo: multiple_photo.suc > 0 ? multiple_photo.msg : [],
+    doc_type: doc_type.suc > 0 ? doc_type.msg : [],
+    doc_file: doc_file.suc > 0 ? doc_file.msg : [],
+    ac_for: ac_for,
+    gender: field_gender,
+    height: field_height,
+    weight: field_weight,
+    bod_type: field_body_type,
+    mari_status: field_marital_status,
+    eat_hab: field_Eating_Habits,
+    dri_hab: field_Drinking_Habits,
+    smoke_hab: field_Smoking_Habits,
+    disable: field_disability,
+    religion: field_Religion,
+    emp_in: field_Employed_in,
+    fam_value: field_family_value,
+    fam_type: field_family_type,
+    fam_status: field_family_status,
+    fam_loc: field_Family_Location,
+    father_occ: field_Father_Occupation,
+    mother_occ: field_Mother_Occupation,
+    no_of_bro: field_No_Brother,
+    no_of_sis: field_No_Sister,
+    id,
+  };
+  res.render("user/edit", data);
 });
 
 userRouter.post("/update_profile_verify", async (req, res) => {

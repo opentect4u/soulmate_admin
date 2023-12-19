@@ -51,6 +51,14 @@
               </p>
               </a>
           </li>
+          <li class="nav-item menu-open">
+            <a href="/user/edit_user" class="nav-link <%= path == '/user/edit_user' || path == '/user/edit_user' ? 'active' : '' %>">
+              <i class='fas fa-edit' style='font-size:20px;'></i>&nbsp;
+              <p>
+                Edit User Details
+                </p>
+                </a>
+            </li>
           <li class="nav-item <%= path == '/payment/subscription_type' || path == '/payment/subscription_dtls' ||  path == '/payment/subscription_amount' ? 'menu-open' : '' %>">
             <a href="#" class="nav-link <%= path == '/payment/subscription_type' || path == '/payment/subscription_dtls' ||  path == '/payment/subscription_amount' ? 'active' : '' %>">
               <i class="fa fa-credit-card"></i>&nbsp;
