@@ -23,6 +23,8 @@ const {
   get_hobby,
   getDeletedata,
   editData,
+  getEditData,
+  getAllEditData,
 } = require("../module/UserModule");
 const {
   field_height,
@@ -140,6 +142,7 @@ userRouter.get("/edit_user_list", async (req, res) => {
   var multiple_photo = await user_multiImg({ user_id: id });
   var doc_type = await user_Doc({ id });
   var doc_file = await user_Doc_File({ user_id: id });
+  var editDataList = await getAllEditData(id)
   var data = {
     groom_loc: groomLocation.suc > 0 ? groomLocation.msg : [],
     basic_info: userBasicInfo.suc > 0 ? userBasicInfo.msg : [],
@@ -148,6 +151,7 @@ userRouter.get("/edit_user_list", async (req, res) => {
     multiple_photo: multiple_photo.suc > 0 ? multiple_photo.msg : [],
     doc_type: doc_type.suc > 0 ? doc_type.msg : [],
     doc_file: doc_file.suc > 0 ? doc_file.msg : [],
+    edit_data: editDataList.suc > 0 ? editDataList.msg : [],
     ac_for: ac_for,
     gender: field_gender,
     height: field_height,
@@ -224,6 +228,12 @@ userRouter.post("/update_active_flag", async (req, res) => {
     }
   }
   res.send(res_dt);
+});
+
+userRouter.post("/update_view_flag", async (req, res) =>{
+ var data = req.body;
+ var chk_flag = await getEditData(data) ;
+ res.send(chk_flag);
 });
 
 userRouter.get("/payment_history", async (req, res) => {

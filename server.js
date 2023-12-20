@@ -69,6 +69,8 @@ app.get("/login", (req, res) => {
   res.render("dashboard/login");
 });
 
+
+
 //  app.get('/user_list', (req, res) => {
 //     res.render('dashboard/user_datatable')
 //  })

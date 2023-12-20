@@ -223,5 +223,36 @@ $("input[data-bootstrap-switch]").each(function(){
       });
   });
 </script>
+<script>
+  $(document).ready(function(){
+      $('#ac_check_flag').click(function(){
+          if(confirm('Do you want to continue?')){
+
+            var ac_status = 'U'
+            if ($('#ac_check_flag').is(':checked')) {
+                $('#ac_status').text('Active');
+                ac_status = 'C'
+            } else {
+                $('#ac_status').text('Deactive');
+                ac_status = 'U'
+            } 
+            
+            $.ajax({
+                url:'/user/update_view_flag',
+                method: 'POST',
+                  data: {flag:ac_status, id: $('#userTableId').val()},
+                  success: function(result){
+                    console.log(result);
+                  },
+                  error: function(err){
+                    console.log(err);
+                  }
+                })
+          }else{
+            return false;
+          }
+      });
+  });
+</script>
 </body>
 </html>
