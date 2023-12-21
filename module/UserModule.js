@@ -36,16 +36,47 @@ const getActive = (data) => {
   });
 };
 
-const getEditData = (data) =>{
+// const getEditData = (data) =>{
+//   return new Promise(async (resolve, reject) => {
+//     datetime = dateFormat(new Date(), "yyyy-mm-dd HH:MM:ss");
+//     var table_name = "td_check_update a, td_user_profile b",
+//     fields = `check_flag = "${data.flag}", view_flag = "Y", checked_by = 'admin', check_dt = "${datetime}"`,
+//     values = null,
+//     whr = `a.profile_id = b.id AND a.check_flag = 'U'`,
+//     flag = 1;
+//     var res_dt = await db_Insert(table_name,fields,values,whr,flag);
+//     resolve(res_dt);
+//   });
+// };
+
+const EditData = (data) =>{
   return new Promise(async (resolve, reject) => {
     datetime = dateFormat(new Date(), "yyyy-mm-dd HH:MM:ss");
-    var table_name = "td_check_update a, td_user_profile b",
-    fields = `check_flag = "${data.flag}", view_flag = "Y", checked_by = 'admin', check_dt = "${datetime}"`,
+    var table_name = "td_check_update",
+    fields = `check_flag = "${data.flag}", checked_by = 'admin', check_dt = "${datetime}"`,
     values = null,
-    whr = null,
+    whr = `profile_id = ${data.id} AND check_flag = 'U'`,
+    flag = 1;
+    var res_dt = await db_Insert(table_name,fields,values,whr,flag);
+
+    var table_name = "td_user_profile",
+    fields = `view_flag = "Y"`,
+    values = null,
+    whr = `id = ${data.id}`,
     flag = 1;
     var res_dt = await db_Insert(table_name,fields,values,whr,flag);
     resolve(res_dt);
+  });
+};
+
+const getAllEditData = (id) => {
+  return new Promise(async (resolve, reject) => {
+    var select = "a.profile_id user_id, a.edite_flag, a.check_flag, b.profile_id,b.u_name,b.email_id, b.view_flag",
+    table_name = `td_check_update a,td_user_profile b`,
+    whr = `a.profile_id = b.id AND a.check_flag = 'U' AND b.id = ${id}`,
+    order = `order by a.modified_dt`;
+   var res_dt = await db_Select(select, table_name, whr, order);
+   resolve(res_dt);
   });
 };
 
@@ -279,16 +310,7 @@ const editData = () => {
   });
 };
 
-const getAllEditData = (id) => {
-  return new Promise(async (resolve, reject) => {
-    var select = "a.profile_id user_id, a.edite_flag, b.profile_id,b.u_name,b.email_id",
-    table_name = `td_check_update a,td_user_profile b`,
-    whr = `a.profile_id = b.id AND a.check_flag = 'U' AND b.id = ${id}`,
-    order = `order by a.modified_dt`;
-   var res_dt = await db_Select(select, table_name, whr, order);
-   resolve(res_dt);
-  });
-};
+
 
 module.exports = {
   getUserList,
@@ -306,6 +328,6 @@ module.exports = {
   get_hobby,
   getDeletedata,
   editData,
-  getEditData,
+  EditData,
   getAllEditData
 };

@@ -23,16 +23,19 @@
 
                     <!---after edit profile verify-->
                     <div class="col-4">
+                        <input type="hidden" name="id" value="<%=id > 0 ? id : 0 %>">
                         <span class="font-weight-bold">After Edit Profile Activation:</span>
                         <div class="custom-control custom-switch">
                             <input type="checkbox" class="custom-control-input" id="ac_check_flag">
                             <label class="custom-control-label" for="ac_check_flag">
-                                <span id="ac_status"></span>
+                                <span id="ac_status"><%= edit_data.length > 0 ? (edit_data[0].check_flag != 'U' ? 'Checked' : 'Unhecked') : '' %></span>
                             </label>
                         </div>
                     </div>
-<% console.log(edit_data) %>
+               
+                    
                     <!--In my own words-->
+                    <% if(edit_data.filter(dt => dt.edite_flag == 'In my own words').length > 0){ %> 
                     <div class="row mt-3" style="background-color: aliceblue;
                     width: 76vw;
                     border: 2px solid #dc3545;
@@ -48,10 +51,11 @@
                             </div>
                         </div>
                         </div>
-                        
-                    </div>
-                     
+                       </div>
+                    <% } %>
+            
                     <!--Birth Details-->
+                    <% if(edit_data.filter(dt => dt.edite_flag == 'Birth Details').length > 0) { %> 
                     <div class="row mt-3" style="background-color: aliceblue;
                     width: 76vw;
                     border: 2px solid #dc3545;
@@ -67,7 +71,7 @@
                             </div>
                             <div class="col-md-6">
                                 <p class="" style="margin-bottom: 0rem; margin-left: 6px;">
-                                    <span class="font-weight-bold">Place Of Birth:</span>
+                                    <span class="font-weight-bold <%= edit_data.length > 0 ? (edit_data.filter(dt => dt.edite_flag == 'Birth Details').length > 0 ? 'text-danger' : '') : '' %>">Place Of Birth:</span>
                                     <span class="pl-2"><%= basic_info.length > 0 ?  basic_info[0].location_id : '' %></span>
                                 </p>
                             </div>
@@ -75,13 +79,16 @@
                         </div>
                         
                     </div>
+                    <% } %>
                     <!-- Basic details -->
+                    <% if(edit_data.filter(dt => dt.edite_flag == 'Basic Details').length > 0) { %> 
                   <div class="row mt-3" style="background-color: aliceblue;
                   width: 76vw;
                   border: 2px solid #dc3545;
                   padding: 17px;
-                  border-radius: 18px;">
-                            <h6 style="background-color: #d81b60; width: 145px; color: white; margin-top: 1vw ;border: 15px; padding:6px; border-radius: 8px"><i class='fas fa-address-card'>&nbsp;Basic Details</i></h6>
+                  border-radius: 18px;">  
+                            <h5 style="background-color: rgb(170, 158, 158);width: 140px; margin-top: 1vw; border: 15px;  padding:6px; border-radius: 8px" class="font-weight-bold <%= edit_data.length > 0 ? (edit_data.filter(dt => dt.edite_flag == 'Basic Details').length > 0 ? 'text-danger' : '') : '' %>">Need to check</h5>&nbsp;
+                            <h6 style="background-color: #d81b60; width: 125px; color: white; margin-top: 1vw ;border: 15px; padding:6px; border-radius: 8px"><i class='fas fa-address-card'>&nbsp;Basic Details</i></h6>
                     <div class="row">
                         <div class="col-md-6">
                             <p>
@@ -109,7 +116,7 @@
                     </div>
                     <div class="col-md-6">
                         <p>
-                            <span class="font-weight-bold">Disability:</span>
+                            <span class="font-weight-bold">Physical Status :</span>
                             <span class="pl-2"><%= basic_info.length > 0 ?  (basic_info[0].disability_flag ? disable[basic_info[0].disability_flag] : '') : '' %></span>
                         </p>
                     </div>
@@ -133,32 +140,33 @@
                     </div>
                      <div class="col-md-6">
                         <p>
-                            <span class="font-weight-bold">Maritual Status:</span>
+                            <span class="font-weight-bold">Marital Status:</span>
                             <span class="pl-2"><%= basic_info.length > 0 ?  (basic_info[0].marital_status ? mari_status[basic_info[0].marital_status] : '') : '' %></span>
                         </p>
                     </div>
                     <div class="col-md-6">
                         <p>
-                            <span class="font-weight-bold">Eating Habbit:</span>
+                            <span class="font-weight-bold">Eating Habits:</span>
                             <span class="pl-2"><%= basic_info.length > 0 ?  (basic_info[0].eating_habbits ? eat_hab[basic_info[0].eating_habbits] : '') : '' %></span>
                         </p>
                     </div>
                     <div class="col-md-6">
                         <p>
-                            <span class="font-weight-bold">smoking Habbit:</span>
+                            <span class="font-weight-bold">smoking Habits:</span>
                             <span class="pl-2"><%= basic_info.length > 0 ?  (basic_info[0].smoking_habbits ? smoke_hab[basic_info[0].smoking_habbits] : '') : '' %></span>
                         </p>
                     </div>
                     <div class="col-md-6">
                         <p>
-                            <span class="font-weight-bold">Drinking Habbit:</span>
+                            <span class="font-weight-bold">Drinking Habits:</span>
                             <span class="pl-2"><%= basic_info.length > 0 ?  (basic_info[0].drinking_habbits ? dri_hab[basic_info[0].drinking_habbits] : '') : '' %></span>
                         </p>
                     </div>   
                 </div>
-            </div>
-
+                  </div>
+                  <% } %>
                <!----Contact Details-->
+               <% if(edit_data.filter(dt => dt.edite_flag == 'Contact Details').length > 0) { %> 
                <div class="row mt-3" style="background-color: aliceblue;
                     width: 76vw;
                     border: 2px solid #dc3545;
@@ -174,7 +182,7 @@
                             </div>
                             <div class="col-md-6">
                                 <p class="" style="margin-bottom: 0rem; margin-left: 6px;">
-                                    <span class="font-weight-bold">Email ID:</span>
+                                    <span class="font-weight-bold <%= edit_data.length > 0 ? (edit_data.filter(dt => dt.edite_flag == 'Contact Details').length > 0 ? 'text-danger' : '') : '' %>">Email ID:</span>
                                     <span class="pl-2"><%= basic_info.length > 0 ?  basic_info[0].email_id : '' %></span>
                                 </p>
                             </div>
@@ -182,48 +190,53 @@
                         </div>
                         
                     </div>
-
+                 <% } %>
                  <!---religion info-->
+               <% if(edit_data.filter(dt => dt.edite_flag == 'Religion Information').length > 0) { %> 
                  <div class="row mt-3" style="background-color: aliceblue;
                  width: 76vw;
                  border: 2px solid #dc3545;
+                 padding: 17px;
                  border-radius: 18px;">
-                     <div class="col-md-12 mb-3">
-                         <h6 style="background-color: #d81b60; width: 180px; color: white; border: 15px; margin-top: 1vw ;padding:6px; border-radius: 8px"><i class='fas fa-atom'>&nbsp;Religion Information</i></h6>
+                 <div class="col-md-8">
+                    <h5 style="background-color: rgb(170, 158, 158);width: 140px; border: 15px;  padding:6px; border-radius: 8px" class="font-weight-bold <%= edit_data.length > 0 ? (edit_data.filter(dt => dt.edite_flag == 'Religion Information').length > 0 ? 'text-danger' : '') : '' %>">Need to check</h5>&nbsp;
+                    <h6 style="background-color: #d81b60; width: 180px; color: white; border: 15px; padding:6px; border-radius: 8px"><i class='fas fa-atom'>&nbsp;Religion Information</i></h6>
                      <div class="row">
                          <div class="col-md-6">
-                             <p class="" style="margin-bottom: 0rem; margin-left: 6px;">
+                             <p>
                                  <span class="font-weight-bold">Religion:</span>
                                  <span class="pl-2"><%= basic_info.length > 0 ?  (basic_info[0].religion ? religion[basic_info[0].religion] : '') : '' %></span>
                              </p>
                          </div>
                          <div class="col-md-6">
-                             <p class="" style="margin-bottom: 0rem; margin-left: 6px;">
+                             <p>
                                  <span class="font-weight-bold">Cast:</span>
                                  <span class="pl-2"><%= basic_info.length > 0 ?  basic_info[0].caste_name : '' %></span>
                              </p>
                          </div>
                      </div>
-                     </div>
-                     
+                    </div>
                  </div>
-
+                 <% } %>
                  <!----Groom's location-->
+                 <% if(edit_data.filter(dt => dt.edite_flag == 'Grooms Location').length > 0) { %>
                  <div class="row mt-3" style="background-color: aliceblue;
                  width: 76vw;
                  border: 2px solid #dc3545;
+                 padding: 17px;
                  border-radius: 18px;">
-                     <div class="col-md-12 mb-3">
-                         <h6 style="background-color: #d81b60; width: 210px; color: white; border: 15px; margin-top: 1vw ;padding:6px; border-radius: 8px"><i class="fas fa-plane">&nbsp;Groom's/Bride's location</i></i></h6>
+                     <div class="col-md-12">
+                    <h5 style="background-color: rgb(170, 158, 158);width: 135px;  border: 15px;  padding:5px; border-radius: 8px" class="font-weight-bold <%= edit_data.length > 0 ? (edit_data.filter(dt => dt.edite_flag == 'Grooms Location').length > 0 ? 'text-danger' : '') : '' %>">Need to check</h5>&nbsp;
+                         <h6 style="background-color: #d81b60; width: 210px; color: white; border: 15px;padding:6px; border-radius: 8px"><i class="fas fa-plane">&nbsp;Groom's/Bride's location</i></i></h6>
                      <div class="row">
                          <div class="col-md-6">
-                             <p class="" style="margin-bottom: 0rem; margin-left: 6px;">
+                             <p>
                                  <span class="font-weight-bold">Country:</span>
                                  <span class="pl-2"><%= basic_info.length > 0 ?  basic_info[0].country_name : '' %></span>
                              </p>
                          </div>
                          <div class="col-md-6">
-                             <p class="" style="margin-bottom: 0rem; margin-left: 6px;">
+                             <p>
                                  <span class="font-weight-bold">State:</span>
                                  <span class="pl-2"><%= basic_info.length > 0 ?  basic_info[0].state_name : '' %></span>
                              </p>
@@ -232,15 +245,16 @@
                      </div>
                      
                  </div>
-
+                 <% } %>
                  <!---Professional information-->
-
+                 <% if(edit_data.filter(dt => dt.edite_flag == 'Professional Information').length > 0) { %>
                <div class="row mt-3" style="background-color: aliceblue;
                 width: 76vw;
                 border: 2px solid #dc3545;
                 padding: 17px;
                 border-radius: 18px;">
-                    <h6 style="background-color: #d81b60; width: 151px; color: white; border: 15px;  padding:5px;border-radius: 8px"><i class='fas fa-user-lock'>&nbsp;Professional Info</i></h6>
+                    <h5 style="background-color: rgb(170, 158, 158);width: 135px;  border: 15px;  padding:5px; border-radius: 8px" class="font-weight-bold <%= edit_data.length > 0 ? (edit_data.filter(dt => dt.edite_flag == 'Professional Information').length > 0 ? 'text-danger' : '') : '' %>">Need to check</h5>&nbsp;
+                    <h6 style="background-color: #d81b60; width: 110; color: white; border: 15px;  padding:5px;border-radius: 8px"><i class='fas fa-user-lock'>&nbsp;Professional Information</i></h6>
                     <div class="row mt-3">
                     <div class="col-md-6">
                         <p>
@@ -286,14 +300,16 @@
                     </div>
                     </div>
                 </div>
+                <% } %>
 
                 <!---Family Details-->
-
+                <% if(edit_data.filter(dt => dt.edite_flag == 'Family Details').length > 0) { %>
                 <div class="row mt-3" style="background-color: aliceblue;
                 width: 76vw;
                 border: 2px solid #dc3545;
                 padding: 17px;
                 border-radius: 18px;">
+                    <h5 style="background-color: rgb(170, 158, 158);width: 135px;  border: 15px;  padding:5px; border-radius: 8px" class="font-weight-bold <%= edit_data.length > 0 ? (edit_data.filter(dt => dt.edite_flag == 'Family Details').length > 0 ? 'text-danger' : '') : '' %>">Need to check</h5>&nbsp;
                     <h6 style="background-color: #d81b60; width: 140px; color: white; border: 15px;  padding:5px;border-radius: 8px"><i class='fas fa-user-check'>&nbsp;Family Details</i></h6>
                     <div class="row mt-3">
                     <div class="col-md-6">
@@ -346,16 +362,28 @@
                     </div>
                     </div>
                 </div>
+                <% } %>
 
                 <!---Add Your Hobbies-->
+                <% if(edit_data.filter(dt => dt.edite_flag == 'Hobbies').length > 0) { %>
                 <div class="row mt-3" style="background-color: aliceblue;
                 width: 76vw;
                 border: 2px solid #dc3545;
                 padding: 17px;
                 border-radius: 18px;">
-                <div class="col-md-12">
-                    <h6 style="background-color: #d81b60; width: 160px; color: white; border: 15px;  padding:5px; border-radius: 8px"><i class="fas fa-heart">&nbsp;Add Your Hobbies</i></h6>
-                </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h5 style="background-color: rgb(170, 158, 158);width: 135px;  border: 15px;  padding:5px; border-radius: 8px" class="font-weight-bold <%= edit_data.length > 0 ? (edit_data.filter(dt => dt.edite_flag == 'Hobbies').length > 0 ? 'text-danger' : '') : '' %>">Need to check</h5>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6 style="background-color: #d81b60; width: 160px; color: white; border: 15px;  padding:5px; border-radius: 8px"><i class="fas fa-heart">&nbsp;Add Your Hobbies</i></h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
                     <div class="col-md-6">
                         <p>
                             <span class="font-weight-bold">Hobbies & Interests:</span>
@@ -380,6 +408,7 @@
                             <span class="pl-2"><%= hobbies.length > 0 ? hobbies[0].movie : '' %></span>
                         </p>
                     </div>
+                    </div>
                     <!-- <div class="col-md-6">
                         <p>
                             <span class="font-weight-bold">Spoken Language(s):</span>
@@ -387,9 +416,10 @@
                         </p>
                     </div> -->
                 </div>
+                <% } %>
 
                 <!----About Family-->
-
+                <% if(edit_data.filter(dt => dt.edite_flag == 'About Family').length > 0) { %>
                 <div class="row mt-3" style="background-color: aliceblue;
                 width: 76vw;
                 border: 2px solid #dc3545;
@@ -399,7 +429,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <p class="" style="margin-bottom: 0rem; margin-left: 6px;">
-                                <span class="font-weight-bold">About My Family:</span>
+                                <span class="font-weight-bold <%= edit_data.length > 0 ? (edit_data.filter(dt => dt.edite_flag == 'About Family').length > 0 ? 'text-danger' : '') : '' %>">About My Family:</span>
                                 <span class="pl-2"><%= basic_info.length > 0 ?  basic_info[0].about_my_family : '' %></span>
                             </p>
                         </div>
@@ -407,6 +437,7 @@
                     </div>
                     
                 </div>
+                <% } %>
 
                 <!---Images-->
                 <div class="row mt-3" style="background-color: aliceblue;

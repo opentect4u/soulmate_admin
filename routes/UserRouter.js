@@ -25,6 +25,7 @@ const {
   editData,
   getEditData,
   getAllEditData,
+  EditData,
 } = require("../module/UserModule");
 const {
   field_height,
@@ -232,7 +233,7 @@ userRouter.post("/update_active_flag", async (req, res) => {
 
 userRouter.post("/update_view_flag", async (req, res) =>{
  var data = req.body;
- var chk_flag = await getEditData(data) ;
+ var chk_flag = await EditData(data) ;
  res.send(chk_flag);
 });
 
