@@ -72,7 +72,7 @@
                           <th>Email</th>
                           <th>Phone No</th>
                           <th>Subscription Status</th>
-                          <!-- <th>Subscription Expire</th> -->
+                          <th>Active Status</th>
                           <th>Action</th>
                           <th>Invoice</th>
                         </tr>
@@ -90,6 +90,7 @@
                               <td><%= dt.email_id %></td>
                               <td><%= dt.phone_no %></td>
                               <td><%= dt.pay_flag=='Y' ? dt.plan_id : 'Free' %></td>
+                              <td><%= dt.active_flag == 'Y' ? 'Active' : 'Deactive' %></td>
                               <td><a class="btn btn-primary view-button" href="/user/view_user?id=<%= dt.id %>"><i class='fas fa-eye'></i</a></td>
                               <td><a class="btn btn-primary view-button" href="/invoice/invoice_download"><i class="fa fa-download"></i></a></button></td>  
                             </tr>
