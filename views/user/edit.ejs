@@ -485,6 +485,8 @@
                 <% } %>
 
                 <input type="hidden" name="userTableId" id="userTableId" value="<%= id %>">
+                <input type="hidden" name="user_name" id="user_name" value="<%= basic_info.length > 0 ? basic_info[0].u_name : '' %>">
+                <input type="hidden" name="user_email" id="user_email" value="<%= basic_info.length > 0 ? basic_info[0].email_id : '' %>">
                   <!-- </div> -->
                   <!-- <div class="row mt-3" style="background-color: aliceblue;
                 width: 76vw;

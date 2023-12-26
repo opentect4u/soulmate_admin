@@ -240,7 +240,7 @@ $("input[data-bootstrap-switch]").each(function(){
             $.ajax({
                 url:'/user/update_view_flag',
                 method: 'POST',
-                  data: {flag:ac_status, id: $('#userTableId').val()},
+                  data: {flag:ac_status, id: $('#userTableId').val(), user_name: $('#user_name').val(), email: $('#user_email').val()},
                   success: function(result){
                     console.log(result);
                   },

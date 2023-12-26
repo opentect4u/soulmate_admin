@@ -1,3 +1,4 @@
+const { ConfirmEmail } = require("../module/EmailModule");
 const {
   ActiveProf,
   DeActiveProf,
@@ -26,7 +27,6 @@ const {
   getEditData,
   getAllEditData,
   EditData,
-  ConfirmEmail,
 } = require("../module/UserModule");
 const {
   field_height,
@@ -235,6 +235,7 @@ userRouter.post("/update_active_flag", async (req, res) => {
 userRouter.post("/update_view_flag", async (req, res) =>{
  var data = req.body;
  var chk_flag = await EditData(data) ;
+ data.flag != 'U' ? await ConfirmEmail(data.email, data.user_name) : ''
  res.send(chk_flag);
 });
 
