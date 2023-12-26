@@ -156,6 +156,8 @@ const SendUserEmail = (emailId,profilelId,userName, note) => {
           }
       });  
     })
-  }
+  };
+
+ 
 
 module.exports = {getUser, SendUserEmail}

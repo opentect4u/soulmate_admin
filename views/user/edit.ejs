@@ -20,7 +20,7 @@
             <div class="card">
                 <!-- /.card-header -->
                 <div class="card-body">
-
+                  <form method="post" action="/user/confirm_email" class="">
                     <!---after edit profile verify-->
                     <div class="col-4">
                         <input type="hidden" name="id" value="<%=id > 0 ? id : 0 %>">
@@ -32,7 +32,10 @@
                             </label>
                         </div>
                     </div>
+                     </form>
+                    </div>
                
+                <div class="card-body">
                     
                     <!--In my own words-->
                     <% if(edit_data.filter(dt => dt.edite_flag == 'In my own words').length > 0){ %> 
@@ -73,6 +76,12 @@
                                 <p class="" style="margin-bottom: 0rem; margin-left: 6px;">
                                     <span class="font-weight-bold <%= edit_data.length > 0 ? (edit_data.filter(dt => dt.edite_flag == 'Birth Details').length > 0 ? 'text-danger' : '') : '' %>">Place Of Birth:</span>
                                     <span class="pl-2"><%= basic_info.length > 0 ?  basic_info[0].location_id : '' %></span>
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="" style="margin-bottom: 0rem; margin-left: 6px;">
+                                    <span class="font-weight-bold <%= edit_data.length > 0 ? (edit_data.filter(dt => dt.edite_flag == 'Birth Details').length > 0 ? 'text-danger' : '') : '' %>">Age:</span>
+                                    <span class="pl-2"><%= basic_info.length > 0 ?  basic_info[0].dob : '' %></span>
                                 </p>
                             </div>
                         </div>

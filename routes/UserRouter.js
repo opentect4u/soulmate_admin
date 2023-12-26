@@ -26,6 +26,7 @@ const {
   getEditData,
   getAllEditData,
   EditData,
+  ConfirmEmail,
 } = require("../module/UserModule");
 const {
   field_height,
@@ -249,6 +250,15 @@ userRouter.post("/delete", async (req, res) => {
   res.send(res_dt);
 });
 
-
+userRouter.post("/confirm_email", async (req, res) => {
+  var data = req.body;
+  console.log(data);
+  var res_dt = await ConfirmEmail(data.email_id,data.user_name)
+  if(res_dt.suc > 0){
+    res.send({suc:1, msg: 'Email sent successfully'})
+}else {
+  res.send({suc:0, msg: 'Email not sent'})
+}
+})
 
 module.exports = { userRouter };
