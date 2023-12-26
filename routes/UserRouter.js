@@ -234,22 +234,8 @@ userRouter.post("/update_active_flag", async (req, res) => {
 
 userRouter.post("/update_view_flag", async (req, res) =>{
  var data = req.body;
- console.log(data);
  var chk_flag = await EditData(data) ;
- if(chk_flag.suc > 0 && chk_flag.msg.length > 0){
-  var Email
-  for(let dt of chk_flag.msg){
-    Email = await ConfirmEmail(dt.email_id,dt.user_name);
-}
-if(Email.suc > 0){
-  res.send({suc:1, msg: 'Email sent successfully'})
-}else {
-  res.send({suc:0, msg: 'Email not sent'})
-}
-}else {
-res.send({suc:0, msg: 'Email Id not found'})
-}
- 
+ res.send(chk_flag);
 });
 
 userRouter.get("/payment_history", async (req, res) => {
@@ -263,5 +249,16 @@ userRouter.post("/delete", async (req, res) => {
   var res_dt = await getDeletedata(data);
   res.send(res_dt);
 });
+
+userRouter.post("/confirm_email", async (req, res) => {
+  var data = req.body;
+  console.log(data);
+  var res_dt = await ConfirmEmail(data.email_id,data.user_name)
+  if(res_dt.suc > 0){
+    res.send({suc:1, msg: 'Email sent successfully'})
+}else {
+  res.send({suc:0, msg: 'Email not sent'})
+}
+})
 
 module.exports = { userRouter };
