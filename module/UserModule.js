@@ -327,8 +327,8 @@ const ConfirmEmail = (emailId,userName) => {
       });
       const mailOptions = {
           from: 'info@mysoulmate.co.in',
-          to: `${emailId}`,
-          // to: `subham@synergicsoftek.in,suvrajit@synergicsoftek.com`,
+          // to: `${emailId}`,
+          to: `sayantika@synergicsoftek.in`,
           subject: 'Important Email',
           html: `<!DOCTYPE html>
           <head>
