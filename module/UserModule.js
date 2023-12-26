@@ -295,6 +295,7 @@ const PaymentHistory = () => {
       whr = `a.user_id=b.id AND a.plan_id=c.id AND a.plan_id=d.sub_id`,
       order = null;
     var res_dt = await db_Select(select, table_name, whr, order);
+    // console.log(res_dt);
     resolve(res_dt);
   });
 };

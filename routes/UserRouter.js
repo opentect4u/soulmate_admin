@@ -77,6 +77,12 @@ userRouter.get("/user_list", async (req, res) => {
   });
 });
 
+userRouter.get("/payment_history", async (req, res) => {
+  var res_dt = await PaymentHistory();
+  res.render("user/pay_history", { 
+    data: res_dt.suc > 0 ? res_dt.msg : [] });
+});
+
 userRouter.get("/edit_user", async (req, res) => {
   var edit_userList = await editData();
   res.render("user/edit_user_datatable", {
@@ -237,11 +243,6 @@ userRouter.post("/update_view_flag", async (req, res) =>{
  var chk_flag = await EditData(data) ;
  data.flag != 'U' ? await ConfirmEmail(data.email, data.user_name) : ''
  res.send(chk_flag);
-});
-
-userRouter.get("/payment_history", async (req, res) => {
-  var res_dt = await PaymentHistory();
-  res.render("user/pay_history", { data: res_dt });
 });
 
 userRouter.post("/delete", async (req, res) => {
