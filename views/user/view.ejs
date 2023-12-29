@@ -396,7 +396,7 @@
                     </div>
                     <form method="POST" action="/user/delete" class="">
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                             <!-- select -->
                                 <div class="form-group">
                                     <label>Reason</label>
@@ -412,16 +412,16 @@
                                     </select>
                                 </div>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-12">
                             <!-- textarea -->
                             <div class="form-group">
                             <label>Remarks</label>
-                            <textarea class="form-control" rows="3" placeholder="Enter ..." style="height: 3vw;" name="remarks"></textarea>
+                            <textarea class="form-control" rows="3" placeholder="Enter Remarks Here ....."  name="remarks"></textarea>
                             </div>
                         </div>
                             <div class="col-12">
                                 <input type="hidden" name="id" value="<%= id > 0 ? id : 0 %>">
-                                <button class="btn btn-danger" type="submit" style="margin-left: 1vw;">Delete</button>
+                                <button class="btn btn-danger" type="submit" style="margin-left: 30vw;">Delete</button>
                             </div>
                         </div>
                     </form>
@@ -454,4 +454,4 @@
           <!-- /.row -->
         </div>
         <!-- /.container-fluid -->
-      </section>
+      </section> 

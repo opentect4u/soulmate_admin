@@ -22,11 +22,11 @@ const {
   getList,
   PaymentHistory,
   get_hobby,
-  getDeletedata,
   editData,
   getEditData,
   getAllEditData,
   EditData,
+  storeDeletedata,
 } = require("../module/UserModule");
 const {
   field_height,
@@ -248,8 +248,8 @@ userRouter.post("/update_view_flag", async (req, res) =>{
 userRouter.post("/delete", async (req, res) => {
   var data = req.body;
   // console.log(data);
-  var res_dt = await getDeletedata(data);
-  res.send(res_dt);
+  var res_dt = await storeDeletedata(data);
+  res.redirect('/user/user_list');
 });
 
 userRouter.post("/confirm_email", async (req, res) => {

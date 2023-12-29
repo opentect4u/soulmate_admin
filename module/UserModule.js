@@ -1,4 +1,6 @@
-const { db_Select, db_Insert } = require("./MasterModule");
+const path = require("path");
+const { db_Select, db_Insert, db_Delete } = require("./MasterModule");
+const fs = require('fs')
 
 const getUserList = (flag = "A") => {
   return new Promise(async (resolve, reject) => {
@@ -80,7 +82,7 @@ const getAllEditData = (id) => {
   });
 };
 
-const getDeletedata = (data) => {
+const storeDeletedata = (data) => {
   return new Promise(async (resolve, reject) => {
     datetime = dateFormat(new Date(), "yyyy-mm-dd HH:MM:ss");
     var select =
@@ -98,6 +100,30 @@ const getDeletedata = (data) => {
         whr = null,
         flag = 0;
       var del_dt = await db_Insert(table_name, fields, values, whr, flag);
+
+      if(del_dt.suc > 0){
+        await db_Delete('td_user_profile', `id = ${data.id}`);
+
+        var kyc_list = await db_Select('file_path', 'td_user_kyc_list', `user_id=${data.id}`, null)
+        if(kyc_list.suc > 0 && kyc_list.msg.length > 0){
+          for(let dt of kyc_list.msg){
+            if (fs.existsSync(path.join('assets', 'uploads', dt.file_path))) {
+              fs.unlinkSync(path.join('assets', 'uploads', dt.file_path));
+            }
+          }
+        }
+        await db_Delete('td_user_kyc_list', `user_id=${data.id}`)
+
+        var pic_list = await db_Select('file_path', 'td_user_profile_image', `user_id=${data.id}`, null)
+        if(pic_list.suc > 0 && pic_list.msg.length > 0){
+          for(let dt of pic_list.msg){
+            if (fs.existsSync(path.join('assets', 'uploads', dt.file_path))) {
+              fs.unlinkSync(path.join('assets', 'uploads', dt.file_path));
+            }
+          }
+        }
+        await db_Delete('td_user_profile_image', `user_id=${data.id}`)
+      }
       // console.log(del_dt);
       resolve(del_dt);
     }
@@ -325,7 +351,7 @@ module.exports = {
   getList,
   PaymentHistory,
   get_hobby,
-  getDeletedata,
+  storeDeletedata,
   editData,
   EditData,
   getAllEditData,
