@@ -27,6 +27,7 @@ const {
   getAllEditData,
   EditData,
   storeDeletedata,
+  total_amount,
 } = require("../module/UserModule");
 const {
   field_height,
@@ -81,6 +82,13 @@ userRouter.get("/payment_history", async (req, res) => {
   var res_dt = await PaymentHistory();
   res.render("user/pay_history", { 
     data: res_dt.suc > 0 ? res_dt.msg : [] });
+});
+
+userRouter.get("/total_amount", async (req, res) => {
+  var res_dt = await total_amount();
+  res.send(res_dt)
+//  res.render("user/pay_history", {
+//   data : res_dt.suc > 0 ? res_dt.msg : [] });
 });
 
 userRouter.get("/edit_user", async (req, res) => {

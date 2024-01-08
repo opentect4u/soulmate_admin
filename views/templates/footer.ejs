@@ -14,7 +14,7 @@
 </div>
 <footer class="main-footer">
     <!-- <strong>Copyright &copy; 2023-2024 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> -->
-    <strong>  All rights reserved © 2023 <a href="http://soulmate.opentech4u.co.in/#/home">Soulmate</a>.</strong>
+    <strong>  All rights reserved © 2023-2024 <a href="http://soulmate.opentech4u.co.in/#/home">Soulmate</a>.</strong>
     <!-- All rights reserved. -->
     <div class="float-right d-none d-sm-inline-block">
       <!-- <b>Version</b> 3.1.0-rc -->
@@ -82,6 +82,7 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/js/pages/dashboard.js"></script>
 <script src="/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<script src="https://cdn.socket.io/4.7.2/socket.io.min.js" integrity="sha384-mZLF4UVrpi/QTWPA7BjNPEnkIfRFn4ZEO3Qt/HFklTJBj/gBOV8G3HcKn4NfQblz" crossorigin="anonymous"></script>
 <!-- Summernote -->
 <script src="/plugins/summernote/summernote-bs4.min.js"></script>
 <script>
@@ -254,5 +255,12 @@ $("input[data-bootstrap-switch]").each(function(){
       });
   });
 </script>
+<!-- <script>
+  var socket = io("http://localhost:3000")
+  socket.on("connect", () => {
+    console.log(socket.id);
+  console.log(socket.connected); // true
+});
+</script> -->
 </body>
 </html>

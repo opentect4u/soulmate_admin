@@ -326,6 +326,18 @@ const PaymentHistory = () => {
   });
 };
 
+const total_amount = () => {
+  return new Promise(async (resolve, reject) => {
+    var select ="SUM(amount)",
+      table_name ="td_user_payment",
+      whr = null,
+      order = null;
+    var res_dt = await db_Select(select, table_name, whr, order);
+    // console.log(res_dt);
+    resolve(res_dt);
+  });
+};
+
 const editData = () => {
   return new Promise(async (resolve, reject) => {
     var select = "distinct a.profile_id user_id ,b.profile_id,b.u_name,b.email_id",
@@ -355,4 +367,5 @@ module.exports = {
   editData,
   EditData,
   getAllEditData,
+  total_amount
 };

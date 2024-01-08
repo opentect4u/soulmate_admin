@@ -1,4 +1,4 @@
-const { getTypeList, getDetailsList, getAmountList } = require('../module/PaymentModule');
+const { getTypeList, getDetailsList, getAmountList, get_amount } = require('../module/PaymentModule');
 const express = require('express');
 paymentRouter = express.Router();
 
@@ -49,6 +49,7 @@ paymentRouter.get("/subscription_amount", async(req, res) => {
   }
   res.render("payment/subscription_amount", data)
 });
+
 
 
 module.exports = {paymentRouter};

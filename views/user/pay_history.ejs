@@ -37,9 +37,10 @@
                           </tr>
                           </thead>
                           <tbody>
-                          <% if(data.length > 0){
+                          <% var tot_amt = 0; if(data.length > 0){
                             var i = 1
-                            data.forEach(dt => { %>
+                            data.forEach(dt => {
+                              tot_amt += dt.amount; %>
                               <tr>
                                 <td><%= i %></td>
                                 <td><%= dt.profile_id %></td>
@@ -50,10 +51,16 @@
                                 <td><%= dt.amount %></td>
                                 <td><%= dt.expire_dt.toLocaleString() %></td>
                               </tr>
+                              
                             <% i++; })
                           } %>
                           </tbody>
                         </table>
+                        <div class="row mb-2">
+                          <div class="col-sm-6">
+                            <h5><b>Total Amount: <%= tot_amt %></amount></b></h5>
+                          </div>
+                        </div>
                       </div>
                       <!-- /.card-body -->
                     </div>
