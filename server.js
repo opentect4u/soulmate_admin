@@ -1,4 +1,4 @@
-const { AdminRouter } = require("./routes/adminRouter");
+// const { AdminRouter } = require("./routes/adminRouter");
 
 const express = require("express");
 const session = require("express-session");
@@ -11,6 +11,8 @@ const { add_dtlsRouter } = require("./routes/Add_dtlsRouter");
 const { add_amountRouter } = require("./routes/Add_amountRouter");
 const { EmailRouter } = require("./routes/EmailRouter");
 const { invoiceRouter } = require("./routes/InvoiceRouter");
+const { AdminRouter } = require("./routes/AdminRouter");
+const { discount_textRouter } = require("./routes/Discount_textRouter");
 
 app = express();
 expressLayouts = require("express-ejs-layouts"),
@@ -84,6 +86,7 @@ app.use("/payment", add_dtlsRouter);
 app.use("/payment", add_amountRouter);
 app.use("/email", EmailRouter);
 app.use("/invoice", invoiceRouter);
+app.use("/discount", discount_textRouter);
 
 app.listen(port, (err) => {
   if (err) throw new Error(err);

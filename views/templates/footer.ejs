@@ -226,6 +226,22 @@ $("input[data-bootstrap-switch]").each(function(){
 </script>
 <script>
   $(document).ready(function(){
+      $('#active_flag').click(function(){
+          // $('#status').toggle();
+            var ac_status = 'N'
+            if ($('#active_flag').is(':checked')) {
+              $('#active_flag_status').text('Active');
+              ac_status = 'Y'
+            } else {
+              $('#active_flag_status').text('Deactive');
+              ac_status = 'N'
+            }
+            $(this).val(ac_status)
+      });
+  });
+</script>
+<script>
+  $(document).ready(function(){
       $('#ac_check_flag').click(function(){
           if(confirm('Do you want to continue?')){
 
