@@ -17,11 +17,11 @@ const getTextList = (id = 0) => {
     return new Promise(async (resolve, reject) => {
      var datetime = dateFormat(new Date(), "yyyy-mm-dd HH:MM:ss");
         var table_name = 'md_discount_text',
-        fields = id > 0 ? `discount_text = '${data.dtls!= '' ? data.dtls.split("'").join("\\'") : ''}', active_flag = '${data.active_flag != "Y" ? "N" : "Y"}' ,modified_by = 'admin', modified_dt = '${datetime}'`:
+        fields = data.id > 0 ? `discount_text = '${data.dtls!= '' ? data.dtls.split("'").join("\\'") : ''}', active_flag = '${data.active_flag != "Y" ? "N" : "Y"}' ,modified_by = 'admin', modified_dt = '${datetime}'`:
         `(discount_text, active_flag, created_by, created_dt)`,
         values = `('${data.dtls!= '' ? data.dtls.split("'").join("\\'") : ''}', '${data.active_flag != "Y" ? "N" : "Y"}', 'admin', '${datetime}')`,
-        whr = id > 0 ? `id = ${id}` : null,
-        flag = id > 0 ? 1 : 0;
+        whr = data.id > 0 ? `id = ${data.id}` : null,
+        flag = data.id > 0 ? 1 : 0;
     var type_data = await db_Insert(table_name, fields, values, whr, flag)
     resolve(type_data);
     });
