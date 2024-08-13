@@ -20,8 +20,10 @@ const getDetailsList = (sub_id = 0) => {
     var select = "a.id,a.sub_id,a.subscription_dtls,a.created_dt,b.pay_name",
     table_name = "md_subscription_dtls a,md_subscription b",
     whr = sub_id > 0 ? `a.sub_id = b.id AND a.sub_id=${sub_id}` : 'a.sub_id = b.id',
-    order = sub_id > 0 ? '' : 'group by sub_id';
+    order = sub_id > 0 ? '' : 'Group By a.id,a.sub_id,a.subscription_dtls,a.created_dt,b.pay_name';
+    // order = null;
     var res_dt = await db_Select(select, table_name, whr, order);
+    // console.log(res_dt);
     resolve(res_dt);
   });
 };

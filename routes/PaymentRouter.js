@@ -34,11 +34,11 @@ paymentRouter.get("/view_type", async (req, res) => {
 
 paymentRouter.get("/subscription_dtls", async(req, res) => {
   var dtls_data = await getDetailsList();
-  var data = {
-    dtls_data,
+  var res_data = {
+    data: dtls_data.suc > 0 ? dtls_data.msg : [],
     header: "Details List",
   }
-  res.render("payment/subscription_dtls", data)
+  res.render("payment/subscription_dtls", res_data)
 });
 
 paymentRouter.get("/subscription_amount", async(req, res) => {

@@ -8,12 +8,7 @@
               <li>Subscription Details</li>
             </ul>
           </div>
-        <!-- <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">DataTables</li>
-          </ol>
-        </div> -->
+       
       </div>
     </div><!-- /.container-fluid -->
   </section>
@@ -24,13 +19,8 @@
       <div class="row">
         <div class="col-12">
             <div class="card">
-                <!-- <div class="card-header">
-                  <h3 class="card-title">DataTable with default features</h3>
-                </div> -->
-                <!-- /.card-header -->
                 <div class="row mt-3">
                       <div class="col-12">
-                        <!-- <button type="button" class="btn btn-light" style="border-radius: 9px; margin-left: 71vw;"><a href="/payment/add_type">Add Type</a></button> -->
                         <a href="/payment/add_dtls?sub_id=0" class="btn btn-primary float-end" style="margin-left: 69vw; border-radius: 7px;">Add Details</a>
                       </div>
                     </div>
@@ -40,14 +30,13 @@
                     <tr>
                       <th>#</th>
                       <th>Type</th>
-                      <!-- <th>Details</th> -->
                       <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>                     
-                      <% if(dtls_data.msg.length > 0){
+                      <% if(data.length > 0){
                         var i = 1
-                        dtls_data.msg.forEach(dt => { %>
+                        data.forEach(dt => { %>
                       <tr>
                         <td><%= i %></td>
                         <td><%= dt.pay_name %></td>
@@ -58,13 +47,8 @@
                     </tbody>
                   </table>
                 </div>
-                <!-- /.card-body -->
               </div>
-              <!-- /.card -->
             </div>
-            <!-- /.col -->
           </div>
-          <!-- /.row -->
         </div>
-        <!-- /.container-fluid -->
       </section>
